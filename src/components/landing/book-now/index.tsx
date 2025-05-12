@@ -1,6 +1,4 @@
 import { Button } from "@/components/ui/button";
-import { poppins } from "@/lib/fonts";
-import clsx from "clsx";
 import Link from "next/link";
 
 export default function BookNow() {
@@ -31,8 +29,8 @@ export default function BookNow() {
                     </div>
 
                 </div>
-                <div className={clsx(poppins.className)}>
-                    <h1 className="font-bold text-2xl/normal mb-4">
+                <div>
+                    <h1 className="font-semibold text-2xl/normal mb-4">
                         Your journey to finding the perfect movie starts with Ayinla Film. We are a platform that connects you with the best movie sets from where you want.
                     </h1>
                     <p className="text-sm/relaxed opacity-50">
