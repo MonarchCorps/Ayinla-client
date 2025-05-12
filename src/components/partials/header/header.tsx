@@ -1,14 +1,13 @@
-import Image from "next/image";
 import Link from "next/link";
 import Nav from "./nav";
 
 export default function Header() {
     return (
-        <header className="bg-transparent shadow fixed w-full inset-x-0 z-[2000]">
+        <header className="!bg-[#0C111D] shadow fixed w-full inset-x-0 z-[2000]">
             <div className="max-w-[90%] mx-auto py-5 flex items-center justify-between">
                 <div>
                     <Link href={"/"}>
-                        <Image
+                        <img
                             src={"/images/logo2.webp"}
                             alt="Ayinla Logo"
                             title="Ayinla Logo"
