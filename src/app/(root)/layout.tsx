@@ -2,42 +2,33 @@ import Footer from "@/components/partials/footer/footer";
 import Header from "@/components/partials/header/header";
 import { CONFIGS } from "@/config";
 import { inter } from "@/lib/fonts";
+import { getDefaultMetadata } from "@/lib/metadata";
+import { Metadata } from "next";
 import "../globals.css";
 
-export const metadata = {
-	title: "Ayinla Films Location (AFL) | Discover & Book Filming Locations in Nigeria",
-	description: "Ayinla Films Location is your go-to marketplace for finding and booking unique filming locations in Nigeria. From cozy apartments to stunning studios, AFL helps creators bring their vision to life.",
+// export const generateMetadata = (): Metadata => {
+export const metadata: Metadata = getDefaultMetadata({
+	title: "Ayinla Films Location (AFL) | Premium Filming Locations Across Nigeria",
+	description: "Discover and book premium filming locations in Nigeria with Ayinla Films. From cozy homes to high-end studios and stunning outdoor sets — find the perfect spot for your film, ad, or music video.",
 	keywords: [
 		"Ayinla Films",
-		"Filming locations Nigeria",
-		"Movie sets Nigeria",
-		"Book film locations",
-		"Studios Nigeria",
-		"Video shoot places"
+		"Film locations Nigeria",
+		"Book movie sets Nigeria",
+		"Filming locations Lagos",
+		"Studio rental for music video",
+		"Outdoor film locations Nigeria",
+		"Production set rental",
+		"Movie location marketplace",
+		"Nigerian film industry",
+		"Video shoot places in Nigeria",
 	],
-	openGraph: {
-		title: "Ayinla Films Location (AFL)",
-		description: "Discover and book filming locations across Nigeria with ease. Find cozy homes, studios, and outdoor sets for your next film or content project.",
-		url: CONFIGS.URL.CLIENT_BASE_URL,
-		siteName: "Ayinla Films",
-		images: [
-			{
-				url: "https://ayinla.vercel.app/path-to-hero-image.jpg",
-				width: 1200,
-				height: 630,
-				alt: "Ayinla Films Hero Image"
-			}
-		],
-		type: "website"
-	},
-	twitter: {
-		card: "summary_large_image",
-		title: "Ayinla Films Location (AFL)",
-		description: "Your go-to platform for premium filming locations in Nigeria.",
-		images: ["https://ayinla.vercel.app/path-to-hero-image.jpg"]
-	}
-};
-
+	url: CONFIGS.URL.CLIENT_BASE_URL,
+	alt: "Browse filming locations on Ayinla Films",
+	twitterTitle: "Ayinla Films | Discover & Book Filming Locations in Nigeria",
+	twitterDesc:
+		"Easily find film sets, homes, and studios for your next production. Ayinla Films connects you to Nigeria's best filming locations.",
+})
+// }
 
 export default function RootLayout({
 	children,
@@ -49,9 +40,13 @@ export default function RootLayout({
 			<body
 				className={`${inter.className} antialiased`}
 			>
-				<Header />
-				{children}
-				<Footer />
+				<div className="flex flex-col min-h-screen">
+					<Header />
+					<div className="flex-1">
+						{children}
+					</div>
+					<Footer />
+				</div>
 			</body>
 		</html>
 	);
