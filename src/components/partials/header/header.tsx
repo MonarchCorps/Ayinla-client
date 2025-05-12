@@ -7,12 +7,15 @@ export default function Header() {
         <header className="bg-transparent shadow fixed w-full inset-x-0 z-[2000]">
             <div className="max-w-[90%] mx-auto py-5 flex items-center justify-between">
                 <div>
-                    <Image
-                        src={"/images/logo2.webp"}
-                        alt="Logo"
-                        width={150}
-                        height={100}
-                    />
+                    <Link href={"/"}>
+                        <Image
+                            src={"/images/logo2.webp"}
+                            alt="Ayinla Logo"
+                            title="Ayinla Logo"
+                            width={150}
+                            height={100}
+                        />
+                    </Link>
                 </div>
                 <Nav />
                 <div className="flex gap-x-3">
