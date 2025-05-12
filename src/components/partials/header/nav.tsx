@@ -14,8 +14,8 @@ import { LinkType } from "@/types/Link"
 import clsx from "clsx"
 
 const propertiesLinks: LinkType[] = [
-    { href: "/property", text: "Properties" },
-    { href: "/property/list", text: "List your property" },
+    { href: "/listing", text: "Listing" },
+    { href: "/listing/all", text: "All Listings" },
     { href: "/listing/history", text: "Listing history" },
     { href: "/listing/request", text: "Listing Request Status" },
 ]
