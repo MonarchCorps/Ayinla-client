@@ -130,3 +130,7 @@ html {
 button[data-slot="accordion-trigger"] > svg {
   display: none;
 }
+
+.clip {
+	clip-path: polygon(0 0, 100% 0, 100% 96%, 0 100%);
+}
