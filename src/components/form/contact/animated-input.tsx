@@ -7,12 +7,18 @@ export default function AnimatedInput({
     label,
     type,
     name,
-    id
+    id,
+    wrapperStyle,
+    labelStyle,
+    inputStyle,
 }: {
     label: string,
     type: string,
     name: string,
     id: string,
+    wrapperStyle?: string,
+    labelStyle?: string,
+    inputStyle?: string,
 }) {
     const [isFocused, setIsFocused] = useState(false);
     const [hasValue, setHasValue] = useState(false);
@@ -29,14 +35,15 @@ export default function AnimatedInput({
     };
 
     return (
-        <div className="flex flex-col relative">
+        <div className={clsx("flex flex-col relative", wrapperStyle)}>
             <label
                 htmlFor={id}
                 className={clsx(
                     "absolute transition-all duration-300 pointer-events-none",
                     (isFocused || hasValue)
                         ? "transform -translate-y-6 text-xs font-semibold text-blue-600"
-                        : "transform translate-y-0 text-sm text-gray-600 opacity-50"
+                        : "transform translate-y-0 text-sm text-gray-600 opacity-50",
+                        labelStyle
                 )}
             >
                 {label}
@@ -48,7 +55,8 @@ export default function AnimatedInput({
                 autoComplete="off"
                 className={clsx(
                     "border-b mt-3 outline-none transition-all duration-300 py-1",
-                    isFocused ? "border-blue-500 border-b-2" : "border-gray-300"
+                    isFocused ? "border-blue-500 border-b-2" : "border-gray-300",
+                    inputStyle
                 )}
                 onFocus={handleFocus}
                 onBlur={handleBlur}
