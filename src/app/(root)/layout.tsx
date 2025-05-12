@@ -6,7 +6,6 @@ import { getDefaultMetadata } from "@/lib/metadata";
 import { Metadata } from "next";
 import "../globals.css";
 
-// export const generateMetadata = (): Metadata => {
 export const metadata: Metadata = getDefaultMetadata({
 	title: "Ayinla Films Location (AFL) | Premium Filming Locations Across Nigeria",
 	description: "Discover and book premium filming locations in Nigeria with Ayinla Films. From cozy homes to high-end studios and stunning outdoor sets — find the perfect spot for your film, ad, or music video.",
