@@ -68,7 +68,7 @@ const subjects: SubjectsType[] = [
 export default function Contact() {
     return (
         <section id="contact">
-            <div className="max-w-[1380px] p-2 mt-10 mx-auto bg-white h-[40rem] shadow rounded-xl grid grid-cols-[500px_1fr]">
+            <div className="max-w-[1380px] p-2 mt-10 mx-auto bg-white shadow rounded-xl grid grid-cols-[500px_1fr]">
                 <div className={clsx(poppins.className, "relative size-full bg-[#223A6A] rounded-xl px-6 py-10 text-[#f1f1f1]")}>
                     <h1 className="text-3xl/relaxed tracking-wide font-semibold">Contact Us</h1>
                     <p className="mt-2 text-base/relaxed opacity-70">Have questions, feedback or need help with a booking?</p>
@@ -123,7 +123,16 @@ export default function Contact() {
                         </div>
                     </div>
 
-                    <div className="col-span-2 flex items-center justify-end">
+                    <AnimatedInput
+                        label="Write a message"
+                        type="text"
+                        name="message"
+                        id="message"
+                        wrapperStyle="col-span-full"
+                        inputStyle="mt-10"
+                    />
+
+                    <div className="col-span-2 flex items-center justify-end mb-5">
                         <Button
                             type="submit"
                             className="py-6 cursor-pointer font-bold bg-[#23396A] hover:bg-[#23396A] hover:rounded-3xl"
