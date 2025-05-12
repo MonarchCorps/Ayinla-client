@@ -67,7 +67,7 @@ const subjects: SubjectsType[] = [
 
 export default function Contact() {
     return (
-        <section>
+        <section id="contact">
             <div className="max-w-[1380px] p-2 mt-10 mx-auto bg-white h-[40rem] shadow rounded-xl grid grid-cols-[500px_1fr]">
                 <div className={clsx(poppins.className, "relative size-full bg-[#223A6A] rounded-xl px-6 py-10 text-[#f1f1f1]")}>
                     <h1 className="text-3xl/relaxed tracking-wide font-semibold">Contact Us</h1>

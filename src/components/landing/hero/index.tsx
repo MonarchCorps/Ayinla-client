@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function Hero() {
     return (
-        <section className="relative h-screen w-full overflow-hidden">
+        <section id="home" className="relative h-screen w-full overflow-hidden">
             <div className="relative h-full w-full bg-gradient-to-b from-black/40 via-black/50 to-transparent">
                 <video
                     className="absolute top-0 left-0 h-full w-full object-cover z-0"
