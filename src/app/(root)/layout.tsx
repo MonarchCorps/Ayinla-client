@@ -1,12 +1,8 @@
 import Footer from "@/components/partials/footer/footer";
 import Header from "@/components/partials/header/header";
 import { CONFIGS } from "@/config";
-import { Geist } from "next/font/google";
+import { inter } from "@/lib/fonts";
 import "../globals.css";
-
-const inter = Geist({
-	subsets: ["latin"]
-})
 
 export const metadata = {
 	title: "Ayinla Films Location (AFL) | Discover & Book Filming Locations in Nigeria",
