@@ -29,7 +29,12 @@ export default function Overview() {
                             exit={{ opacity: 0.7 }}
                             transition={{ duration: 0.5 }}
                         >
-                            <ZoomImage src={activeImage} width={800} height={420} />
+                            <ZoomImage
+                                src={activeImage}
+                                width={800}
+                                height={420}
+                                alt="Image" //// don't forget to change the all 
+                            />
                         </motion.div>
                     </AnimatePresence>
 
@@ -47,7 +52,7 @@ export default function Overview() {
                             >
                                 <img
                                     src={img}
-                                    alt={`Thumbnail ${idx + 1}`}
+                                    alt={`Thumbnail ${idx + 1}`} ///// dont forget to change the alt
                                     className="w-full h-36 object-cover"
                                 />
                             </button>
