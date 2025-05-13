@@ -1,3 +1,6 @@
+import { Button } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 import Card from "./card";
 
 export default function TailoredProperties() {
@@ -15,6 +18,17 @@ export default function TailoredProperties() {
                         <Card key={index} index={index} />
                     ))}
                 </div>
+            </div>
+            <div className="grid place-content-center mb-9 mt-3">
+                <Button
+                    type="submit"
+                    className="py-6 cursor-pointer font-bold bg-[#23396A] hover:bg-[#23396A] rounded-none hover:rounded-3xl"
+                    asChild
+                >
+                    <Link href={"/listing/all"} prefetch scroll={false}>
+                        All Listings <ArrowRight />
+                    </Link>
+                </Button>
             </div>
             <div className="size-full bg-gradient-to-b from-black/40 via-black/50 to-transparent">
                 <video
