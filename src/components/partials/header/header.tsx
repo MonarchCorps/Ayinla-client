@@ -8,7 +8,7 @@ export default function Header() {
                 <div>
                     <Link href={"/"}>
                         <img
-                            src={"/images/logo2.webp"}
+                            src={"/images/logo1.webp"}
                             alt="Ayinla Logo"
                             title="Ayinla Logo"
                             width={150}
