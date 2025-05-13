@@ -7,7 +7,7 @@ export default function TopLocations() {
             <div className="max-w-[1380px] p-10 mt-5 mx-auto">
                 <div className="flex items-center justify-between">
                     <h1 className="font-semibold text-[#4D4848] text-3xl">Top Locations</h1>
-                    <Link className="hover:underline text-[0.9rem] tracking-wide opacity-75" href={"/listing"}>
+                    <Link className="hover:underline text-[0.9rem] tracking-wide opacity-75" href={"/listing"} scroll={false}>
                         More Listings
                     </Link>
                 </div>
