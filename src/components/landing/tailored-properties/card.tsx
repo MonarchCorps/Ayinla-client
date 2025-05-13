@@ -1,13 +1,14 @@
 import { FileImage, Proportions } from "lucide-react";
+import Link from "next/link";
 import { FaLocationDot } from "react-icons/fa6";
 
-export default function Card() {
+export default function Card({ index }: { index: number }) {
     return (
-        <div className="shadow-md rounded-xl overflow-hidden">
+        <Link href={`/listing/${index}`} prefetch className="shadow-md rounded-xl overflow-hidden">
             <img
                 src={"/images/listing-image.webp"}
                 alt="Listing Image" ////// don't forget to change the name
-                className="w-full h-80 object-cover"
+                className="w-full h-80 object-cover transition-all duration-300 hover:scale-110"
             />
             <div className="pt-5 px-5 pb-3 space-y-3.5">
                 <p className="inline-flex items-center gap-x-1">
@@ -27,6 +28,6 @@ export default function Card() {
                 </div>
                 <p className="font-medium text-base">₦{" "}{(400000).toLocaleString()}</p>
             </div>
-        </div>
+        </Link>
     );
 }

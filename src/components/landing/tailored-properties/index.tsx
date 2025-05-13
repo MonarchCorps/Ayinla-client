@@ -12,7 +12,7 @@ export default function TailoredProperties() {
                 </div>
                 <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
                     {Array.from({ length: 6 }).map((card, index: number) => (
-                        <Card key={index} />
+                        <Card key={index} index={index} />
                     ))}
                 </div>
             </div>
