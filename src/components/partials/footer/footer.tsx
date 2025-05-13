@@ -1,16 +1,14 @@
-import { ScrollLink } from "@/components/scroll-top";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function Footer() {
     return (
-        <footer className="pb-14">
-            <div className="max-w-[90%] mx-auto mt-16 bg-[#223A6A] px-6 py-16 rounded-3xl">
+        <footer className="!bg-[#0C111D] py-10">
+            <div className="max-w-[90%] mx-auto">
                 <div className="grid grid-cols-5 justify-between gap-10 lg:text-left">
-
                     <div className="flex w-full flex-col gap-6 col-span-2">
                         <div className="flex items-center gap-2 lg:justify-start">
-                            <ScrollLink toId="home">
+                            <Link href={"/"}>
                                 <Image
                                     src="/images/logo1.webp"
                                     alt="logo"
@@ -18,7 +16,7 @@ export default function Footer() {
                                     width={150}
                                     height={100}
                                 />
-                            </ScrollLink>
+                            </Link>
                         </div>
                         <p className="text-white/70 text-sm leading-[1.7]">
                             Explore unique spaces that enhance your creativity—cozy homes, vibrant studios, and stunning outdoor settings. We simplify finding the perfect location for your projects.
@@ -37,14 +35,14 @@ export default function Footer() {
                         </h3>
                         <ul className="space-y-4 text-sm text-white/60">
                             <li className="font-medium hover:text-white hover:opacity-100">
-                                <ScrollLink toId="home">
-                                    Home
-                                </ScrollLink>
+                                {/* <ScrollLink toId="home"> */}
+                                Home
+                                {/* </ScrollLink> */}
                             </li>
                             <li className="font-medium hover:text-white hover:opacity-100">
-                                <ScrollLink toId="contact">
-                                    Contact
-                                </ScrollLink>s
+                                {/* <ScrollLink toId="contact"> */}
+                                Contact
+                                {/* </ScrollLink> */}
                             </li>
                             <li className="font-medium hover:text-white hover:opacity-100">
                                 <Link href={"/about"}>
