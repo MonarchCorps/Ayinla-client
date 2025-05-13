@@ -3,6 +3,7 @@ import Header from "@/components/partials/header/header";
 import { CONFIGS } from "@/config";
 import { inter } from "@/lib/fonts";
 import { getDefaultMetadata } from "@/lib/metadata";
+import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 import { Metadata } from "next";
 import "../globals.css";
 
@@ -39,13 +40,15 @@ export default function RootLayout({
 			<body
 				className={`${inter.className} antialiased`}
 			>
-				<div className="flex flex-col min-h-screen">
-					<Header />
-					<div className="flex-1">
-						{children}
+				<AppRouterCacheProvider>
+					<div className="flex flex-col min-h-screen">
+						<Header />
+						<div className="flex-1">
+							{children}
+						</div>
+						<Footer />
 					</div>
-					<Footer />
-				</div>
+				</AppRouterCacheProvider>
 			</body>
 		</html>
 	);
