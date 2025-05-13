@@ -40,10 +40,10 @@ export default function BookNow() {
                         Whether you're shooting a film, music video, or commercial — we're here to support your vision.
                     </p>
                     <Button
-                        className="mt-8 w-fit py-6 bg-[#23396A] hover:bg-[#23396A] hover:rounded-3xl"
+                        className="mt-8 w-fit py-6 bg-[#23396A] hover:bg-[#23396A] rounded-none hover:rounded-3xl"
                         asChild
                     >
-                        <Link href={"/booking"}>
+                        <Link href={"/booking"} scroll={false}>
                             Book Now
                         </Link>
                     </Button>

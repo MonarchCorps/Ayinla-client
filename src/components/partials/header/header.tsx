@@ -18,10 +18,10 @@ export default function Header() {
                 </div>
                 <Nav />
                 <div className="flex gap-x-3">
-                    <Link href={"/sign-in"} className="py-3 px-6 bg-[#23396A] hover:bg-[#23396A] text-[#fff] rounded-none font-medium border border-solid border-[#23396A]">
+                    <Link href={"/sign-in"} scroll={false} className="py-3 px-6 bg-[#23396A] hover:bg-[#23396A] text-[#fff] rounded-none font-medium border border-solid border-[#23396A]">
                         Sign In
                     </Link>
-                    <Link href={"/sign-up"} className="py-3 px-6 bg-[#fff] hover:bg-[#fff] text-[#23396A] rounded-none font-medium border border-solid border-[#23396A]">
+                    <Link href={"/sign-up"} scroll={false} className="py-3 px-6 bg-[#fff] hover:bg-[#fff] text-[#23396A] rounded-none font-medium border border-solid border-[#23396A]">
                         Sign Up
                     </Link>
                 </div>
