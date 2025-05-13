@@ -135,7 +135,7 @@ export default function Contact() {
                     <div className="col-span-2 flex items-center justify-end mb-5">
                         <Button
                             type="submit"
-                            className="py-6 cursor-pointer font-bold bg-[#23396A] hover:bg-[#23396A] hover:rounded-3xl"
+                            className="py-6 cursor-pointer font-bold bg-[#23396A] hover:bg-[#23396A] rounded-none hover:rounded-3xl"
                         >
                             Send Message
                         </Button>
