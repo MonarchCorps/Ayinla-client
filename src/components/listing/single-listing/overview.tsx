@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Button } from "../ui/button";
-import ZoomImage from "../zoom/zoom-image";
+import { Button } from "../../ui/button";
+import ZoomImage from "../../zoom/zoom-image";
 // At the top
 import { AnimatePresence, motion } from "framer-motion";
 

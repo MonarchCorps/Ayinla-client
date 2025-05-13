@@ -1,4 +1,4 @@
-import AllListing from "@/components/all-listing";
+import AllListing from "@/components/listing/all-listing";
 
 export default function AllListingPage() {
     return (

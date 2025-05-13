@@ -1,5 +1,5 @@
+import { Button } from "@/components/ui/button";
 import { Filter, Search } from "lucide-react";
-import { Button } from "../ui/button";
 import Card from "./card";
 
 export default function AllListing() {
