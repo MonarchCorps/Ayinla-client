@@ -138,21 +138,19 @@ export default function BookingHistoryPage() {
     } = usePagination("booking");
 
     return (
-        <main className="min-h-full">
-            <section>
-                <div className="max-w-[1280px] p-10 mt-4 mx-auto">
-                    <h1 className="text-3xl text-center text-[#414041] font-medium">Booking History</h1>
-                    <BookingTable
-                        data={bookingData.bookings}
-                        columns={columns}
-                        totalCount={bookingData.paging.total_count}
-                        pageIndex={pageIndex}
-                        pageSize={pageSize}
-                        setPageIndex={setPageIndex}
-                        isLoading={false}
-                    />
-                </div>
-            </section>
-        </main>
+        <section>
+            <div className="max-w-[1280px] p-10 mt-4 mx-auto">
+                <h1 className="text-3xl text-center text-[#414041] font-medium">Booking History</h1>
+                <BookingTable
+                    data={bookingData.bookings}
+                    columns={columns}
+                    totalCount={bookingData.paging.total_count}
+                    pageIndex={pageIndex}
+                    pageSize={pageSize}
+                    setPageIndex={setPageIndex}
+                    isLoading={false}
+                />
+            </div>
+        </section>
     );
 }

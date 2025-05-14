@@ -7,15 +7,13 @@ import TailoredProperties from "@/components/landing/tailored-properties";
 
 export default function Home() {
 	return (
-		<main className="min-h-full">
-			<div className="bg-[#F1F9FF]">
-				<Hero />
-				<Services />
-				<TailoredProperties />
-				<Features />
-				<BookNow />
-				<Contact />
-			</div>
-		</main>
+		<div className="bg-[#F1F9FF] pb-10">
+			<Hero />
+			<Services />
+			<TailoredProperties />
+			<Features />
+			<BookNow />
+			<Contact />
+		</div>
 	);
 }

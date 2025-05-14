@@ -3,11 +3,9 @@ import Listing from "@/components/listing";
 
 export default function ListingPage() {
     return (
-        <main className="min-h-full">
-            <div className="bg-[#F1F9FF]">
-                <Listing />
-                <HowItWorks />
-            </div>
-        </main>
+        <div className="bg-[#F1F9FF]">
+            <Listing />
+            <HowItWorks />
+        </div>
     );
 }

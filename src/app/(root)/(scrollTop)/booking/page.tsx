@@ -23,14 +23,12 @@ export const generateMetadata = (): Metadata => {
 
 export default function BookingPage() {
     return (
-        <main className="min-h-full">
-            <div className="bg-[#F1F9FF]">
-                <Booking />
-                <TopLocations />
-                <div>
-                    <GeneralFaqs />
-                </div>
+        <div className="bg-[#F1F9FF]">
+            <Booking />
+            <TopLocations />
+            <div>
+                <GeneralFaqs />
             </div>
-        </main>
+        </div>
     );
 }
