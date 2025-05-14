@@ -1,7 +1,7 @@
-import Card from "@/components/listing/all-listing/card";
-import Details from "@/components/listing/single-listing/details";
-import Gallery from "@/components/listing/single-listing/gallery";
-import Overview from "@/components/listing/single-listing/overview";
+import Card from "@/features/listing/all-listing/card";
+import Details from "@/features/listing/single-listing/details";
+import Gallery from "@/features/listing/single-listing/gallery";
+import Overview from "@/features/listing/single-listing/overview";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";

@@ -1,7 +1,7 @@
 import { CONFIGS } from "@/config";
 import { getDefaultMetadata } from "@/lib/metadata";
 import { Metadata } from "next";
-import { Button } from "../ui/button";
+import { Button } from "../../components/ui/button";
 
 export const metadata: Metadata = getDefaultMetadata({
     title: "Property Listings",

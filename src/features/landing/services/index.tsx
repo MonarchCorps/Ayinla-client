@@ -1,4 +1,4 @@
-import Faq from "@/components/faq";
+import Faq from "@/features/faq";
 
 export default function Services() {
     return (
@@ -11,7 +11,7 @@ export default function Services() {
                     </h1>
                 </div>
                 <div className="grid grid-cols-2 mt-14 gap-14 max-w-[95%] mx-auto px-10">
-                    <Faq  />
+                    <Faq />
 
                     <img
                         src={"/images/explore.webp"}

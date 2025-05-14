@@ -1,6 +1,6 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
 import { LocateFixedIcon, Search } from "lucide-react";
-import { Button } from "../ui/button";
 
 export default function Booking() {
     return (

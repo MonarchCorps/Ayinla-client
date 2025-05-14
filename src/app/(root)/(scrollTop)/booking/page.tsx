@@ -1,6 +1,6 @@
-import Booking from "@/components/booking";
-import GeneralFaqs from "@/components/faq/general-faqs";
-import TopLocations from "@/components/top-location";
+import Booking from "@/features/booking";
+import GeneralFaqs from "@/features/faq/general-faqs";
+import TopLocations from "@/features/top-location";
 import { CONFIGS } from "@/config";
 import { getDefaultMetadata } from "@/lib/metadata";
 import { Metadata } from "next";

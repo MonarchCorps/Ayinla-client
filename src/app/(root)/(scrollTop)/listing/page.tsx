@@ -1,5 +1,5 @@
-import HowItWorks from "@/components/how-it-works";
-import Listing from "@/components/listing";
+import HowItWorks from "@/features/how-it-works";
+import Listing from "@/features/listing";
 
 export default function ListingPage() {
     return (
