@@ -2,7 +2,7 @@ import { CONFIGS } from "@/config";
 import { UserType } from "@/types/Auth";
 
 const tokenName = CONFIGS.STORAGE_NAME.token;
-const authName = CONFIGS.STORAGE_NAME.auth_data
+const authName = CONFIGS.STORAGE_NAME.auth
 
 export function isTokenExpired(): boolean {
     try {
