@@ -4,7 +4,7 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from "@/components/ui/accordion";
-import { accordionContent } from "@/lib/data";
+import { accordionContent } from "@/utils/data";
 import clsx from "clsx";
 import { Plus } from "lucide-react";
 
