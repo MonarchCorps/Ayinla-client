@@ -1,13 +1,9 @@
 import Footer from "@/components/partials/footer/footer";
 import Header from "@/components/partials/header/header";
 import { CONFIGS } from "@/config";
-import { inter } from "@/lib/fonts";
 import { getDefaultMetadata } from "@/lib/metadata";
-import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 import { Metadata } from "next";
-import "../globals.css";
 import ToastifyContainer from "@/components/toast-container";
-import { AuthProvider } from "@/context/AuthContext";
 
 export const metadata: Metadata = getDefaultMetadata({
 	title: "Ayinla Films Location (AFL) | Premium Filming Locations Across Nigeria",
@@ -39,24 +35,14 @@ export default function RootLayout({
 	modal: React.ReactNode
 }>) {
 	return (
-		<html lang="en">
-			<body
-				className={`${inter.className} antialiased`}
-			>
-				<AppRouterCacheProvider>
-					<AuthProvider>
-						<div className="flex flex-col min-h-screen">
-							<Header />
-							<main className="flex-1 min-h-full">
-								{children}
-								{modal}
-							</main>
-							<Footer />
-							<ToastifyContainer />
-						</div>
-					</AuthProvider>
-				</AppRouterCacheProvider>
-			</body>
-		</html>
+		<div className="flex flex-col min-h-screen">
+			<Header />
+			<main className="flex-1 min-h-full">
+				{children}
+				{modal}
+			</main>
+			<Footer />
+			<ToastifyContainer />
+		</div>
 	);
 }

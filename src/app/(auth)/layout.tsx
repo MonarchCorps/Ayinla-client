@@ -1,9 +1,6 @@
 import { CONFIGS } from "@/config";
-import { inter } from "@/lib/fonts";
 import { getDefaultMetadata } from "@/lib/metadata";
 import { Metadata } from "next";
-import "../globals.css";
-import ToastifyContainer from "@/components/toast-container";
 
 export const metadata: Metadata = getDefaultMetadata({
     title: "Authentication | Ayinla Films",
@@ -28,15 +25,5 @@ export const metadata: Metadata = getDefaultMetadata({
 export default function AuthLayout({
     children
 }: Readonly<{ children: React.ReactNode }>) {
-    return (
-        <html lang="en">
-            <body
-                className={`${inter.className} antialiased`}>
-                <main className="min-h-full">
-                    {children}
-                    <ToastifyContainer />
-                </main>
-            </body>
-        </html>
-    );
+    return children;
 }
