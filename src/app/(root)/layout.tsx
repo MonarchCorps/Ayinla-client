@@ -6,6 +6,8 @@ import { getDefaultMetadata } from "@/lib/metadata";
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 import { Metadata } from "next";
 import "../globals.css";
+import ToastifyContainer from "@/components/toast-container";
+import { AuthProvider } from "@/context/AuthContext";
 
 export const metadata: Metadata = getDefaultMetadata({
 	title: "Ayinla Films Location (AFL) | Premium Filming Locations Across Nigeria",
@@ -28,12 +30,13 @@ export const metadata: Metadata = getDefaultMetadata({
 	twitterDesc:
 		"Easily find film sets, homes, and studios for your next production. Ayinla Films connects you to Nigeria's best filming locations.",
 })
-// }
 
 export default function RootLayout({
 	children,
+	modal,
 }: Readonly<{
 	children: React.ReactNode;
+	modal: React.ReactNode
 }>) {
 	return (
 		<html lang="en">
@@ -41,13 +44,17 @@ export default function RootLayout({
 				className={`${inter.className} antialiased`}
 			>
 				<AppRouterCacheProvider>
-					<div className="flex flex-col min-h-screen">
-						<Header />
-						<div className="flex-1">
-							{children}
+					<AuthProvider>
+						<div className="flex flex-col min-h-screen">
+							<Header />
+							<main className="flex-1 min-h-full">
+								{children}
+								{modal}
+							</main>
+							<Footer />
+							<ToastifyContainer />
 						</div>
-						<Footer />
-					</div>
+					</AuthProvider>
 				</AppRouterCacheProvider>
 			</body>
 		</html>
