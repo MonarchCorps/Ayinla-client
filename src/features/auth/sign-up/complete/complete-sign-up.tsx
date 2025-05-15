@@ -10,6 +10,7 @@ import { AuthResponse, completeSignUpSchemaType } from "@/types/Auth";
 import { toastActionPromise } from "@/utils/toast-action";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAction } from "next-safe-action/hooks";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
@@ -53,13 +54,16 @@ export default function CompleteSignUpForm({ token }: { token: string }) {
 
     return (
         <div className="h-screen min-h-[30rem] flex flex-col max-w-[40rem] mx-auto px-10 mt-20">
-            <Link href={"/"} className="flex items-center justify-center">
-                <img
-                    src={"/images/logo2.webp"}
-                    alt="Logo"
-                    className="w-64 max-[400px]:w-40 object-cover mb-9 shrink-0"
-                />
-            </Link>
+            <div className="relative w-64 h-22 self-center mb-9 shrink-0">
+                <Link href={"/"}>
+                    <Image
+                        src="/images/logo2.webp"
+                        alt="Ayinla Logo"
+                        title="Ayinla Logo"
+                        layout="fill"
+                    />
+                </Link>
+            </div>
             <h1 className="font-medium text-3xl/relaxed">Personal Details</h1>
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="grid grid-cols-2 gap-x-3 gap-y-4 mt-5">
