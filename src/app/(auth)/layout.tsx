@@ -3,7 +3,7 @@ import { getDefaultMetadata } from "@/lib/metadata";
 import { Metadata } from "next";
 
 export const metadata: Metadata = getDefaultMetadata({
-    title: "Authentication | Ayinla Films",
+    title: "Authentication",
     description: "Secure login, registration, and account management for Ayinla Films users.",
     keywords: [
         "Login",
@@ -17,7 +17,7 @@ export const metadata: Metadata = getDefaultMetadata({
     ],
     url: `${CONFIGS.URL.CLIENT_BASE_URL}/auth`,
     alt: "Authenticate with Ayinla Films",
-    twitterTitle: "Ayinla Films | Authentication",
+    twitterTitle: "Authentication",
     twitterDesc: "Access your account or create a new one on Ayinla Films for premium filming location bookings.",
 });
 
