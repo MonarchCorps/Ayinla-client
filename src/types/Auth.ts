@@ -1,4 +1,6 @@
 import type {
+    initiateSignUpSchema,
+    completeSignupSchema,
     loginSchema,
 } from "@/schema/auth";
 import type { ISOStringFormat } from "date-fns";
@@ -44,9 +46,11 @@ export type AuthLoginProps = {
     password: string;
 };
 
-export type AuthLoginResponse = AuthType & {
+export type AuthResponse = AuthType & {
     access_token: string;
     token_expires_at: ISOStringFormat;
 };
 
 export type loginSchemaType = z.infer<typeof loginSchema>;
+export type initiateSignUpSchemaType = z.infer<typeof initiateSignUpSchema>;
+export type completeSignUpSchemaType = z.infer<typeof completeSignupSchema>;

@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import { Spinner } from "@/components/ui/spinner";
 import { loginSchema } from "@/schema/auth";
-import { AuthLoginResponse, loginSchemaType } from "@/types/Auth";
+import { AuthResponse, loginSchemaType } from "@/types/Auth";
 import { zodResolver } from "@hookform/resolvers/zod";
 import clsx from "clsx";
 import Link from "next/link";
@@ -14,23 +14,33 @@ import { useAction } from "next-safe-action/hooks"
 import { useRouter } from "next/navigation";
 import { useLoginUser } from "@/app/api/v1";
 import { toastActionPromise } from "@/utils/toast-action";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import useAuth from "@/hooks/useAuth";
 import { CONFIGS } from "@/config";
+import { motion } from "framer-motion";
 
 export default function SignInForm({
 	wrapperStyle,
-	showImage = true
+	showImage = true,
+	shouldReplace = false,
+	shouldAnimate = true,
 }: {
 	wrapperStyle?: string;
 	showImage?: boolean;
+	shouldReplace?: boolean;
+	shouldAnimate?: boolean;
 }) {
 	const router = useRouter();
 	const { setAuth } = useAuth();
 
+	const rememberRef = useRef<HTMLInputElement>(null);
 	const [persist, setPersist] = useState<boolean>(false);
 
-	const { executeAsync, result, isExecuting } = useAction(useLoginUser)
+	const { executeAsync, isExecuting } = useAction(useLoginUser)
+
+	useEffect(() => {
+		rememberRef.current?.focus();
+	}, []);
 
 	const form = useForm<loginSchemaType>({
 		resolver: zodResolver(loginSchema),
@@ -41,7 +51,7 @@ export default function SignInForm({
 	});
 
 	const onSubmit = async (values: loginSchemaType) => {
-		const result: AuthLoginResponse | undefined = await toastActionPromise(
+		const result: AuthResponse | undefined = await toastActionPromise(
 			executeAsync,
 			values,
 			{
@@ -49,7 +59,7 @@ export default function SignInForm({
 				success: "Signed in successfully!",
 				error: {
 					render({ data }) {
-						return typeof data === "string" ? data : "Login failed";
+						return typeof data === "string" ? data : "Failed to login";
 					},
 				}
 			}
@@ -60,14 +70,24 @@ export default function SignInForm({
 
 			setAuth({ user }, persist, { token, token_expires_at })
 			router.push("/");
+			form.reset(form.getValues());
 		}
 	}
+
 	return (
-		<div
+		<motion.div
 			className={clsx(
-				"flex flex-col justify-center transition-all duration-500 ease-in-out",
+				"flex flex-col justify-center",
 				wrapperStyle
 			)}
+			key="login-form"
+			{...(shouldAnimate
+				? {
+					initial: { opacity: 0, y: 60 },
+					animate: { opacity: 1, y: 0 },
+					transition: { duration: 0.5 },
+				}
+				: {})}
 		>
 			{showImage && (
 				<Link href={"/"} className="self-center">
@@ -103,6 +123,7 @@ export default function SignInForm({
 						<div className="flex items-center justify-between mt-5 flex-wrap gap-2">
 							<div className="flex items-center gap-2">
 								<input
+									ref={rememberRef}
 									type="checkbox"
 									className="size-4"
 									checked={persist}
@@ -149,13 +170,26 @@ export default function SignInForm({
 						</Button>
 						<p className="text-[#475467] text-center mt-2">
 							Don't have an account{" "}
-							<Link className="font-semibold text-[#175CD3]" href={"/sign-up"}>
-								Sign Up
-							</Link>
+							{shouldReplace ? (
+								<Link
+									className="font-semibold text-[#175CD3]"
+									href={"/sign-up"}
+									replace={shouldReplace}
+								>
+									Sign Up
+								</Link>
+							) : (
+								<button
+									type="button"
+									className="cursor-pointer font-semibold text-[#175CD3]"
+									onClick={(e) => {
+										e.preventDefault(); window.location.href = "/sign-up"
+									}}>Sign Up</button>
+							)}
 						</p>
 					</form>
 				</Form>
 			</div>
-		</div>
+		</motion.div>
 	);
 }
