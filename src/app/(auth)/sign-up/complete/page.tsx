@@ -4,10 +4,10 @@ import Link from "next/link";
 
 export default async function CompleteSignupPage({
     searchParams
-}: { searchParams: Promise<{ token?: string }> }) {
-    const { token } = await searchParams
+}: { searchParams: Promise<{ t?: string }> }) {
+    const { t } = await searchParams
 
-    if (!token) {
+    if (!t) {
         return (
             <section className="h-screen flex flex-col items-center justify-center text-center px-4">
                 <h2 className="text-2xl font-semibold mb-2">Invalid Signup Token</h2>
@@ -26,5 +26,5 @@ export default async function CompleteSignupPage({
         )
     }
 
-    return <CompleteSignUpForm token={token} />
+    return <CompleteSignUpForm token={t} />
 }
