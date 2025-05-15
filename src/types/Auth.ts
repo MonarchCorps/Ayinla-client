@@ -2,6 +2,8 @@ import type {
     initiateSignUpSchema,
     completeSignupSchema,
     loginSchema,
+    initiateForgotPasswordSchema,
+    completeForgotPasswordSchema,
 } from "@/schema/auth";
 import type { ISOStringFormat } from "date-fns";
 import type { z } from "zod";
@@ -54,3 +56,5 @@ export type AuthResponse = AuthType & {
 export type loginSchemaType = z.infer<typeof loginSchema>;
 export type initiateSignUpSchemaType = z.infer<typeof initiateSignUpSchema>;
 export type completeSignUpSchemaType = z.infer<typeof completeSignupSchema>;
+export type initiateForgotPasswordSchemaType = z.infer<typeof initiateForgotPasswordSchema>;
+export type completeForgotPasswordSchemaType = z.infer<typeof completeForgotPasswordSchema>;

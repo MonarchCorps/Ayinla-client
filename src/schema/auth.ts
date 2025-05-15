@@ -50,14 +50,15 @@ export const completeSignupSchema = z.object({
     message: "Passwords do not match",
 });
 
-export const forgotPasswordSchema = z.object({
+export const initiateForgotPasswordSchema = z.object({
     email: z
         .string()
         .min(1, "Email is required")
         .email("Email must be valid"),
 });
 
-export const resetPasswordSchema = z.object({
+export const completeForgotPasswordSchema = z.object({
+    token: z.string(),
     new_password: z
         .string()
         .min(1, "New password is required"),

@@ -142,6 +142,7 @@ export default function SignInForm({
 							<button
 								type="button"
 								className="cursor-pointer font-semibold text-[#175CD3]"
+								onClick={() => window.location.href = "/forgot-password"}
 							>
 								Forgot Password
 							</button>
