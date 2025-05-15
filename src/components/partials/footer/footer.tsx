@@ -8,15 +8,17 @@ export default function Footer() {
                 <div className="grid grid-cols-5 justify-between gap-10 lg:text-left">
                     <div className="flex w-full flex-col gap-6 col-span-2">
                         <div className="flex items-center gap-2 lg:justify-start">
-                            <Link href={"/"}>
-                                <Image
-                                    src="/images/logo1.webp"
-                                    alt="logo"
-                                    title="Ayinla logo"
-                                    width={150}
-                                    height={100}
-                                />
-                            </Link>
+                            <div
+                                className="w-42 h-16 relative">
+                                <Link href={"/"}>
+                                    <Image
+                                        src="/images/logo1.webp"
+                                        alt="Ayinla Logo"
+                                        title="Ayinla Logo"
+                                        layout="fill"
+                                    />
+                                </Link>
+                            </div>
                         </div>
                         <p className="text-white/70 text-sm leading-[1.7]">
                             Explore unique spaces that enhance your creativity—cozy homes, vibrant studios, and stunning outdoor settings. We simplify finding the perfect location for your projects.

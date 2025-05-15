@@ -18,6 +18,7 @@ import { useEffect, useRef, useState } from "react";
 import useAuth from "@/hooks/useAuth";
 import { CONFIGS } from "@/config";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export default function SignInForm({
 	wrapperStyle,
@@ -90,13 +91,17 @@ export default function SignInForm({
 				: {})}
 		>
 			{showImage && (
-				<Link href={"/"} className="self-center">
-					<img
-						src={"/images/logo2.webp"}
-						alt="Logo"
-						className="w-64 max-[400px]:w-40 object-cover mb-4 shrink-0"
-					/>
-				</Link>
+				<div
+					className="w-64 h-20 relative self-center shrink-0 mb-4">
+					<Link href={"/"}>
+						<Image
+							src="/images/logo2.webp"
+							alt="Ayinla Logo"
+							title="Ayinla Logo"
+							layout="fill"
+						/>
+					</Link>
+				</div>
 			)}
 			<h1 className="font-medium text-3xl/relaxed">Log in</h1>
 			<p className="text-[#475467] text-base/relaxed">

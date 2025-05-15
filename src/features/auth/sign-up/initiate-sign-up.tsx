@@ -15,16 +15,23 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { AnimatePresence, motion } from "framer-motion";
 import clsx from "clsx";
+import Image from "next/image";
 
 function Logo() {
     return (
-        <Link href="/" className="flex items-center justify-center">
-            <img
-                src="/images/logo2.webp"
-                alt="Logo"
-                className="w-64 max-[400px]:w-40 object-cover mb-9 shrink-0"
-            />
-        </Link>
+        <div className="w-full flex items-center justify-center">
+            <div
+                className="w-64 h-22 relative shrink-0 mb-8">
+                <Link href={"/"}>
+                    <Image
+                        src="/images/logo2.webp"
+                        alt="Ayinla Logo"
+                        title="Ayinla Logo"
+                        layout="fill"
+                    />
+                </Link>
+            </div>
+        </div>
     );
 }
 

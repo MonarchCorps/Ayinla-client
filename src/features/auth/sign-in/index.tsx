@@ -2,7 +2,7 @@ import SignInForm from "./sign-in-form";
 
 export default function SignIn() {
     return (
-        <div className="grid grid-cols-2 h-screen min-h-[30rem]">
+        <div className="grid grid-cols-2 h-screen min-h-[30rem] overflow-hidden">
             <SignInForm wrapperStyle="px-30" />
             <div className="size-full relative">
                 <img className="size-full object-cover" src={"/images/explore-opt.webp"} alt="" />
