@@ -19,7 +19,6 @@ export default function FormInputField<T extends FieldValues>({
     formItemStyles,
     placeholder,
     disabled,
-    onChange,
     inputMode,
     inputStyles,
     textarea,

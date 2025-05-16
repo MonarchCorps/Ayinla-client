@@ -1,16 +1,20 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { LocateFixedIcon, Search } from "lucide-react";
+import Image from "next/image";
 
 export default function Booking() {
     return (
         <section className="relative h-[98vh] clip w-full overflow-hidden">
             <div className="relative h-full w-full bg-gradient-to-b from-black/40 via-black/50 to-transparent">
-                <img
-                    src={"/images/booking-hero.webp"}
-                    alt="Booking"
-                    className="absolute"
-                />
+                <div className="absolute size-full">
+                    <Image
+                        src={"/images/booking-hero.webp"}
+                        alt="Booking"
+                        fill
+                        priority={true}
+                    />
+                </div>
                 <div className="relative z-10 flex flex-col gap-y-2 pt-56 max-w-[900px] px-10 text-[#FFFFFF]">
                     <h1 className="font-bold text-5xl leading-[1.5] max-w-[40rem]">Find a location that matches your vision here</h1>
                     <p className="mb-3">

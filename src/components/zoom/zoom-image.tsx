@@ -1,4 +1,5 @@
 // ZoomImage.tsx
+import Image from 'next/image';
 import ZoomOverlay from './zoom-overlay';
 
 type Props = {
@@ -15,12 +16,14 @@ export default function ZoomImage({ src, width, height, alt }: Props) {
                 className="relative overflow-hidden"
                 style={{ width, height }}
             >
-                <img
+                <Image
                     className="object-cover border z-10"
-                    style={{ width, height }}
                     src={src}
                     alt={alt}
-                    />
+                    width={width}
+                    height={height}
+                    priority={true}
+                />
                 <ZoomOverlay src={src} width={width} height={height} />
             </div>
         </div>

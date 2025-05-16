@@ -28,7 +28,7 @@ export const ScrollLink = ({
 		if (section) {
 			section.scrollIntoView({ behavior: 'smooth' });
 		}
-	}, []);
+	}, [toId]);
 
 	return (
 		<button tabIndex={0} onClick={scrollToContact} className={clsx("cursor-pointer", className)}>

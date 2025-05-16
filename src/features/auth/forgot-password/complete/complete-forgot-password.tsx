@@ -9,14 +9,12 @@ import { completeForgotPasswordSchemaType } from "@/types/Auth";
 import { toastActionPromise } from "@/utils/toast-action";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAction } from "next-safe-action/hooks";
-import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { motion } from "framer-motion"
 import { IoKeyOutline } from "react-icons/io5";
 
 export default function CompleteForgotPassword({ token }: { token: string }) {
 
-    const router = useRouter();
     const { executeAsync, isExecuting } = useAction(useCompleteForgotPassword);
 
     const form = useForm<completeForgotPasswordSchemaType>({

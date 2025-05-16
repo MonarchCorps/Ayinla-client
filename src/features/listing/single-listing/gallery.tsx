@@ -1,3 +1,4 @@
+import Image from "next/image";
 
 export default function Gallery() {
     return (
@@ -6,12 +7,14 @@ export default function Gallery() {
                 <h1 className="font-bold text-base">Gallery</h1>
                 <div className="grid grid-cols-3 gap-5">
                     {Array.from({ length: 12 }).map((_, index: number) => (
-                        <img
-                            key={index}
-                            src={"/images/detail-2.jpg"}
-                            alt="Gallery"
-                            className="w-full object-cover"
-                        />
+                        <div key={index} className="relative h-70">
+                            <Image
+                                className="object-cover"
+                                src={"/images/detail-2.jpg"}
+                                alt="Gallery"
+                                fill
+                            />
+                        </div>
                     ))}
                 </div>
             </div>

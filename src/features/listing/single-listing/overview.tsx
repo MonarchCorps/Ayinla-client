@@ -4,8 +4,8 @@ import Link from "next/link";
 import { useState } from "react";
 import { Button } from "../../../components/ui/button";
 import ZoomImage from "../../../components/zoom/zoom-image";
-// At the top
 import { AnimatePresence, motion } from "framer-motion";
+import Image from "next/image";
 
 const imageVariants = [
     "/images/detail-2.jpg",
@@ -50,11 +50,14 @@ export default function Overview() {
                                     : "border-transparent"
                                     }`}
                             >
-                                <img
-                                    src={img}
-                                    alt={`Thumbnail ${idx + 1}`} ///// dont forget to change the alt
-                                    className="w-full h-36 object-cover"
-                                />
+                                <div className="relative h-36">
+                                    <Image
+                                        src={img}
+                                        alt={`Thumbnail ${idx + 1}`} ///// dont forget to change the alt
+                                        className="object-cover"
+                                        fill
+                                    />
+                                </div>
                             </button>
                         ))}
                     </div>

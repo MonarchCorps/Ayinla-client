@@ -13,7 +13,7 @@ export default function Header() {
                             src="/images/logo1.webp"
                             alt="Ayinla Logo"
                             title="Ayinla Logo"
-                            layout="fill"
+                            fill
                         />
                     </Link>
                 </div>

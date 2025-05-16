@@ -98,7 +98,7 @@ export default function SignInForm({
 							src="/images/logo2.webp"
 							alt="Ayinla Logo"
 							title="Ayinla Logo"
-							layout="fill"
+							fill
 						/>
 					</Link>
 				</div>
@@ -163,10 +163,11 @@ export default function SignInForm({
 						>
 							{true ? (
 								<>
-									<img
+									<Image
 										src={"/images/google.png"}
 										alt="Google login"
-										className="size-6"
+										width={24}
+										height={24}
 									/>
 									Sign In with Google
 								</>
@@ -175,7 +176,7 @@ export default function SignInForm({
 							)}
 						</Button>
 						<p className="text-[#475467] text-center mt-2">
-							Don't have an account{" "}
+							Don&apos;t have an account{" "}
 							{shouldReplace ? (
 								<Link
 									className="font-semibold text-[#175CD3]"

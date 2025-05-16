@@ -27,7 +27,7 @@ function Logo() {
                         src="/images/logo2.webp"
                         alt="Ayinla Logo"
                         title="Ayinla Logo"
-                        layout="fill"
+                        fill
                     />
                 </Link>
             </div>
@@ -75,7 +75,12 @@ function SignUpForm({
                         >
                             {true ? (
                                 <>
-                                    <img src="/images/google.png" alt="Google login" className="size-6" />
+                                    <Image
+                                        src="/images/google.png"
+                                        alt="Google login"
+                                        width={24}
+                                        height={24}
+                                    />
                                     Sign Up with Google
                                 </>
                             ) : (
@@ -141,7 +146,7 @@ function ConfirmationScreen({
             )}
 
             <p className="text-[#475467] text-center mt-5">
-                Didn't receive the email?{" "}
+                Didn&apos;t receive the email?{" "}
                 <button
                     type="button"
                     className="cursor-pointer font-semibold text-[#175CD3]"

@@ -1,11 +1,10 @@
 import { toast } from "react-toastify";
-import { SafeActionResult } from "next-safe-action";
 
 type ToastMessages = {
     pending: string;
     success: string;
     error: {
-        render?: (data: any) => string;
+        render: ({ data }: { data: unknown }) => string;
     } | string;
 };
 
@@ -17,7 +16,7 @@ type ToastMessages = {
  * @returns A promise that resolves to the action result data
  */
 export const toastActionPromise = async <TInput, TOutput>(
-    executeAsync: (input: TInput) => Promise<SafeActionResult<any, any, any, any, any, TOutput> | undefined>,
+    executeAsync: (input: TInput) => Promise<{ data?: TOutput; serverError?: string; validationErrors?: unknown } | undefined>,
     values: TInput,
     toastMessages: ToastMessages
 ): Promise<TOutput | undefined> => {

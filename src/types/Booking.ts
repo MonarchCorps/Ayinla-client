@@ -14,7 +14,7 @@ export type BookingType = {
     requires_inspection: boolean;
     payment_window_expires_at: string,
     total_price_kobo: number,
-    status: BookingStatus;
+    status: string;
     created_at: string;
     updated_at: string;
     user: {

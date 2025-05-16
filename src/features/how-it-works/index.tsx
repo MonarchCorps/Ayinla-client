@@ -1,4 +1,5 @@
 import { Calendar, CheckSquare, DollarSign, Home } from "lucide-react";
+import Image from "next/image";
 
 type SectionInfoType = {
     icon: React.ReactNode;
@@ -40,11 +41,14 @@ export default function HowItWorks() {
                     </h1>
                 </div>
                 <div className="grid grid-cols-2 gap-x-20 mt-12 items-center">
-                    <img
-                        src="/images/how-it-works.webp"
-                        alt="How it works"
-                        className="w-full h-[30rem] object-cover rounded-3xl"
-                    />
+                    <div className="relative w-full h-[30rem]">
+                        <Image
+                            src="/images/how-it-works.webp"
+                            alt="How it works"
+                            className="object-cover rounded-3xl"
+                            fill
+                        />
+                    </div>
                     <div className="space-y-8">
                         {sectionInfos.map((sectionInfo: SectionInfoType, index: number) => (
                             <div key={index} className="flex items-start gap-x-4">

@@ -2,6 +2,7 @@ import { CONFIGS } from "@/config";
 import { getDefaultMetadata } from "@/lib/metadata";
 import { Metadata } from "next";
 import { Button } from "../../components/ui/button";
+import Image from "next/image";
 
 export const metadata: Metadata = getDefaultMetadata({
     title: "Property Listings",
@@ -23,13 +24,15 @@ export default function Listing() {
     return (
         <section className="relative h-[98vh] clip w-full overflow-hidden">
             <div className="relative h-full w-full bg-gradient-to-b from-black/40 via-black/50 to-transparent">
-                <img
-                    src={"/images/listing-hero.webp"}
-                    alt="Listing"
-                    className="absolute"
-                />
-
-                <div className="relative z-10 h-full flex flex-col justify-end gap-y-2 pb-20 max-w-[900px] px-10 text-[#FFFFFF]">
+                <div className="absolute size-full z-0">
+                    <Image
+                        src={"/images/listing-hero.webp"}
+                        alt="Listing"
+                        fill
+                        priority={true}
+                    />
+                </div>
+                <div className="relative z-50 h-full flex flex-col justify-end gap-y-2 pb-20 max-w-[900px] px-10 text-[#FFFFFF]">
                     <h1 className="font-bold text-5xl leading-[1.3] max-w-[40rem]">Earn Money For Listing Your space</h1>
                     <Button
                         type="submit"

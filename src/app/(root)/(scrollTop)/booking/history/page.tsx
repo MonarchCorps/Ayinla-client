@@ -1,7 +1,7 @@
 "use client"
 
-import useColumns from "@/components/booking/columns";
-import BookingTable from "@/components/booking/table-content";
+import useColumns from "@/features/booking/columns";
+import BookingTable from "@/features/booking/table-content";
 import usePagination from "@/store/paginationStore";
 
 const bookingData = {
@@ -132,8 +132,6 @@ export default function BookingHistoryPage() {
     const {
         pageIndex,
         pageSize,
-        page,
-        limit,
         setPageIndex,
     } = usePagination("booking");
 

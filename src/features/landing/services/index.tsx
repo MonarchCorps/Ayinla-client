@@ -1,4 +1,5 @@
 import Faq from "@/features/faq";
+import Image from "next/image";
 
 export default function Services() {
     return (
@@ -13,11 +14,14 @@ export default function Services() {
                 <div className="grid grid-cols-2 mt-14 gap-14 max-w-[95%] mx-auto px-10">
                     <Faq />
 
-                    <img
-                        src={"/images/explore.webp"}
-                        alt="Explore"
-                        className="w-full h-[34rem] object-cover rounded-3xl"
-                    />
+                    <div className="relative w-full h-[35rem]">
+                        <Image
+                            src={"/images/explore.webp"}
+                            alt="Explore"
+                            className="object-cover rounded-3xl"
+                            fill
+                        />
+                    </div>
                 </div>
             </div>
         </section>

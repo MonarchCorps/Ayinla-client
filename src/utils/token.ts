@@ -1,5 +1,4 @@
 import { CONFIGS } from "@/config";
-import { UserType } from "@/types/Auth";
 
 const tokenName = CONFIGS.STORAGE_NAME.token;
 const authName = CONFIGS.STORAGE_NAME.auth

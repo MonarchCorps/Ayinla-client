@@ -60,7 +60,7 @@ export default function CompleteSignUpForm({ token }: { token: string }) {
                         src="/images/logo2.webp"
                         alt="Ayinla Logo"
                         title="Ayinla Logo"
-                        layout="fill"
+                        fill
                     />
                 </Link>
             </div>

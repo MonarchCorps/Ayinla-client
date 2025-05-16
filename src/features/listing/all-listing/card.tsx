@@ -1,16 +1,20 @@
 import { poppins } from "@/lib/fonts";
 import clsx from "clsx";
 import { ArrowRight } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
 export default function Card({ index }: { index: number }) {
     return (
         <div>
-            <img
-                src={"/images/listing.jpg"}
-                alt="" //// dont forget to change the alt
-                className="w-full h-70 object-cover"
+            <div className="relative w-full h-70">
+                <Image
+                    src={listing.thumbnail_url}
+                    alt={`${listing.name}`}
+                    className="object-cover"
+                    fill
             />
+            </div>
             <div className={clsx(poppins.className, "mt-4")}>
                 <h1 className="text-[#414041] font-bold text-xl">The Queen Inside - Type 3</h1>
                 <p className="font-regular text-[#8C959F] mt-2">
