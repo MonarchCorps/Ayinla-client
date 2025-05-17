@@ -87,21 +87,64 @@ export async function fetchListings(query: string, page: number, limit = 8): Pro
     return res.json();
 }
 
-export async function fetchListingDetails(slug: string): Promise<{ listing: SingleListingResponseType }> {
-    const res = await fetch(`${CONFIGS.URL.API_BASE_URL}/listings/${slug}/public`, {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
-        next: { revalidate: 60 },
-        credentials: "omit"
-    })
+// export async function fetchListingDetails(slug: string): Promise<{ listing: SingleListingResponseType }> {
+//     const res = await fetch(`${CONFIGS.URL.API_BASE_URL}/listings/${slug}/public`, {
+//         method: "GET",
+//         headers: { "Content-Type": "application/json" },
+//         next: { revalidate: 60 },
+//         credentials: "omit"
+//     })
+//     console.log(res)
+//     if (!res.ok) {
+//         throw new Error("Failed to fetch listing details");
+//     }
 
-    if (!res.ok) {
-        throw new Error("Failed to fetch listing details");
+//     return res.json();
+
+// }
+
+export async function fetchListingDetails(
+    slug: string
+): Promise<{ listing: SingleListingResponseType }> {
+    try {
+        const res = await fetch(
+            `${CONFIGS.URL.API_BASE_URL}/listings/${slug}/public`,
+            {
+                method: "GET",
+                headers: { "Content-Type": "application/json" },
+                next: { revalidate: 60 },
+                credentials: "omit",
+            }
+        );
+
+        if (!res.ok) {
+            let errorMessage = `Failed to fetch listing details: ${res.status} ${res.statusText}`;
+            try {
+                const errorData = await res.json();
+                if (errorData?.message) {
+                    errorMessage += ` - ${errorData.message}`;
+                } else {
+                    errorMessage += ` - ${JSON.stringify(errorData)}`;
+                }
+            } catch {
+                // Could not parse error response, ignore
+            }
+            throw new Error(errorMessage);
+        }
+
+        const data = await res.json();
+        return data;
+    } catch (error) {
+        // This catch handles network errors or unexpected issues
+        if (error instanceof Error) {
+            // You could also log the error here or send it to a monitoring service
+            throw new Error(`Network or unexpected error: ${error.message}`);
+        } else {
+            throw new Error("Unknown error occurred");
+        }
     }
-
-    return res.json();
-
 }
+
 
 export async function fetchAtLeast3Listings(): Promise<ListingsResponseType> {
     const queries = ['mo', 'home', 'flat', 'room', 'villa', 'rent', 'real', 'estate'];
