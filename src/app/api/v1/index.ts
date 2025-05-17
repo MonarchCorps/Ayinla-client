@@ -146,7 +146,7 @@ export async function fetchListingDetails(
 }
 
 
-export async function fetchAtLeast3Listings(): Promise<ListingsResponseType> {
+export async function fetchAtLeast3Listings(length: number): Promise<ListingsResponseType> {
     const queries = ['mo', 'home', 'flat', 'room', 'villa', 'rent', 'real', 'estate'];
     const listingsMap = new Map<string, ListingType>();
 
@@ -167,16 +167,16 @@ export async function fetchAtLeast3Listings(): Promise<ListingsResponseType> {
             listingsMap.set(listing.slug, listing);
         }
 
-        if (listingsMap.size >= 3) break;
+        if (listingsMap.size >= length) break;
     }
 
-    const shuffled = shuffleArray(Array.from(listingsMap.values())).slice(0, 3);
+    const shuffled = shuffleArray(Array.from(listingsMap.values())).slice(0, length);
 
     return {
         listings: shuffled,
         paging: {
             page: 1,
-            limit: 3,
+            limit: length,
             count: shuffled.length,
             total_pages: 1,
             total_count: shuffled.length
