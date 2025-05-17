@@ -2,9 +2,6 @@
 
 import clsx from "clsx";
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
-import React from "react";
-
-export const dynamic = "force-dynamic";
 
 export type LottieProps = {
     animationData?: string,
