@@ -2,19 +2,31 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Button } from "../../../components/ui/button";
-import ZoomImage from "../../../components/zoom/zoom-image";
+import { Button } from "@/components/ui/button";
+import ZoomImage from "@/components/zoom/zoom-image";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
+import { AmenitiesType } from "@/types/Listing";
 
-const imageVariants = [
-    "/images/detail-2.jpg",
-    "/images/detail-3.jpg",
-    "/images/detail-4.jpg",
-];
+type Props = {
+    data: {
+        thumbnail_url: string;
+        image_urls: string[];
+        price_kobo: number;
+        slug: string;
+        state: string;
+        lga: string;
+        name: string;
+        tags: string[];
+        amenities: AmenitiesType[];
+    }
+}
 
+export default function Overview({ data }: Props) {
+    const imageVariants = [
+        ...data.image_urls,
+    ];
 
-export default function Overview() {
     const [activeImage, setActiveImage] = useState(imageVariants[0]);
 
     return (
@@ -33,15 +45,15 @@ export default function Overview() {
                                 src={activeImage}
                                 width={800}
                                 height={420}
-                                alt="Image" //// don't forget to change the all 
+                                alt={data.name}
                             />
                         </motion.div>
                     </AnimatePresence>
 
-                    <div className="grid grid-cols-3 gap-x-4 mt-5">
+                    <div className="grid grid-cols-3 gap-4 mt-5">
                         {imageVariants.map((img, idx) => (
                             <button
-                                key={img}
+                                key={idx}
                                 type="button"
                                 tabIndex={0}
                                 onClick={() => setActiveImage(img)}
@@ -53,7 +65,7 @@ export default function Overview() {
                                 <div className="relative h-36">
                                     <Image
                                         src={img}
-                                        alt={`Thumbnail ${idx + 1}`} ///// dont forget to change the alt
+                                        alt={`Thumbnail ${idx + 1}`}
                                         className="object-cover"
                                         fill
                                     />
@@ -63,51 +75,52 @@ export default function Overview() {
                     </div>
                 </div>
 
-                {/* Property Info */}
                 <div>
                     <div className="flex items-center gap-x-2">
-                        <p className="text-[#046E98] text-base">Rent</p>
+                        {data?.tags?.map((tag, index) => {
+                            return (
+                                <p key={index} className="text-[#046E98] text-base">
+                                    {tag}
+                                    {index !== data.tags.length - 1 && (
+                                        <span className="ml-2 size-2 bg-[#046E98] rounded-full shrink-0 inline-block" />
+                                    )}
+                                </p>
+                            )
+                        })}
+                        {/* <p className="text-[#046E98] text-base">Rent</p>
                         <div className="size-2 bg-[#046E98] rounded-full shrink-0"></div>
-                        <p className="text-[#046E98] text-base">Furnished</p>
+                        <p className="text-[#046E98] text-base">Furnished</p> */}
                     </div>
 
                     <h1 className="mt-3 text-4xl font-bold leading-[1.4]">
-                        Luxurious Mansion, with outdoor space.
+                        {data.name}
                     </h1>
 
                     <p className="space-x-4 mt-2">
-                        <span className="text-base text-[#8C959F]">Lagos</span>
-                        <span className="text-base text-[#8C959F]">Lekki</span>
+                        <span className="text-base text-[#8C959F]">{data.state}</span>
+                        <span className="text-base text-[#8C959F]">{data.lga}</span>
                     </p>
 
                     <div className="mt-5 flex items-end gap-x-3">
                         <h2 className="text-4xl text-[#223A6A] font-bold">
-                            ₦{(24567).toLocaleString()}
+                            ₦{(data.price_kobo / 100).toLocaleString()}
                         </h2>
-                        <h4 className="line-through text-[#8C959F]">
+                        {/* <h4 className="line-through text-[#8C959F]">
                             ₦{(12356).toLocaleString()}
                         </h4>
                         <div className="bg-[#ffecea] px-2">
                             <span className="text-[#FF6653] text-sm">50% Off</span>
-                        </div>
+                        </div> */}
                     </div>
 
                     <div className="flex mt-6 space-x-4">
-                        <div className="border border-solid border-[#E3E3E3] py-3 px-5">
-                            <span className="text-base text-[#8C959F] font-medium">
-                                7 Bed
-                            </span>
-                        </div>
-                        <div className="border border-solid border-[#E3E3E3] py-3 px-5">
-                            <span className="text-base text-[#8C959F] font-medium">
-                                7 Bathroom
-                            </span>
-                        </div>
-                        <div className="border border-solid border-[#E3E3E3] py-3 px-5">
-                            <span className="text-base text-[#8C959F] font-medium">
-                                987 Sq feet
-                            </span>
-                        </div>
+                        {data.amenities.slice(0, 4).map((amenities, index) => (
+                            <div key={index} className="border border-solid border-[#E3E3E3] py-3 px-5">
+                                <span className="text-base text-[#8C959F] font-medium">
+                                    {amenities.name}
+                                </span>
+                            </div>
+                        ))}
                     </div>
 
                     <Button

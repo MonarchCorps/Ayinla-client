@@ -1,5 +1,11 @@
 import { PagingType } from "./Paging";
 
+export type AmenitiesType = {
+    name: string;
+    slug: string;
+    type: "building" | "unit"
+}
+
 export type ListingParams = {
     allListing?: string;
     page?: number;
@@ -23,3 +29,10 @@ export type ListingsResponseType = {
     listings: ListingType[];
     paging: PagingType;
 };
+
+export type SingleListingResponseType =
+    ListingType & {
+        image_urls: string[];
+        description: string;
+        amenities: AmenitiesType[];
+    };
