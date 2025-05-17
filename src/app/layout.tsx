@@ -6,6 +6,7 @@ import "./globals.css";
 import { Metadata } from "next";
 import { getDefaultMetadata } from "@/lib/metadata";
 import { CONFIGS } from "@/config";
+import { PaginationProvider } from "@/context/PaginationContext";
 
 export const metadata: Metadata = getDefaultMetadata({
     title: "Ayinla Films Location (AFL) | Premium Filming Locations Across Nigeria",
@@ -37,12 +38,14 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
                 className={`${inter.className} antialiased`}
             >
                 <AppRouterCacheProvider>
-                    <AuthProvider>
-                        <main>
-                            {children}
-                            <ToastifyContainer />
-                        </main>
-                    </AuthProvider>
+                    <PaginationProvider>
+                        <AuthProvider>
+                            <main>
+                                {children}
+                                <ToastifyContainer />
+                            </main>
+                        </AuthProvider>
+                    </PaginationProvider>
                 </AppRouterCacheProvider>
             </body>
         </html>
