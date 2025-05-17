@@ -20,8 +20,7 @@ export default function ZoomImage({ src, width, height, alt }: Props) {
                     className="object-cover border z-10"
                     src={src}
                     alt={alt}
-                    width={width}
-                    height={height}
+                    fill
                     priority={true}
                 />
                 <ZoomOverlay src={src} width={width} height={height} />
