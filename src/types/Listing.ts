@@ -1,7 +1,7 @@
 import { PagingType } from "./Paging";
 
 export type ListingParams = {
-    query?: string;
+    allListing?: string;
     page?: number;
     limit?: string;
 }

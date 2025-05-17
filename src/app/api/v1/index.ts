@@ -10,6 +10,7 @@ import {
     initiateSignUpSchema,
     loginSchema
 } from "@/schema/auth";
+import { ListingsResponseType } from "@/types/Listing";
 
 export const useLoginUser = createSafeAction(loginSchema, async ({ parsedInput }) => {
     const { email, password } = parsedInput;
@@ -62,4 +63,21 @@ export const useCompleteForgotPassword = createSafeAction(
         })
 
         return { message: "Success" }
-    })
+    });
+
+
+export async function fetchListings(query: string, page: number, limit = 8): Promise<ListingsResponseType> {
+    const res = await fetch(`${CONFIGS.URL.API_BASE_URL}/search`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ query, page, limit }),
+        next: { revalidate: 60 },
+        credentials: "omit"
+    });
+
+    if (!res.ok) {
+        throw new Error("Failed to fetch listings");
+    }
+
+    return res.json();
+}

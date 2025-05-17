@@ -1,9 +1,19 @@
-import AllListing from "@/features/listing/all-listing";
+import SearchForm from "@/features/listing/all-listing/search-form";
+import { ListingParams } from "@/types/Listing";
 
-export default function AllListingPage() {
+export default async function AllListingPage({
+    searchParams
+}: {
+    searchParams: Promise<ListingParams>
+}) {
+
+    const params = await searchParams;
+    const query = params.allListing || "mountain";
+
     return (
-        <div className="max-w-[1340px] p-10 pt-38 mx-auto">
-            <AllListing />
-        </div>
+        <>
+            <h1 className="font-semibold text-[#414041] text-2xl tracking-wide">Showing Beautiful Interior</h1>
+            <SearchForm query={query} />
+        </>
     );
 }
