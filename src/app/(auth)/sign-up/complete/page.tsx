@@ -1,6 +1,26 @@
 import { Button } from "@/components/ui/button";
+import { CONFIGS } from "@/config";
 import CompleteSignUpForm from "@/features/auth/sign-up/complete/complete-sign-up";
+import { getDefaultMetadata } from "@/lib/metadata";
+import { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = getDefaultMetadata({
+    title: "Account Created | Ayinla Films Location (AFL)",
+    description: "Welcome to Ayinla Films! Start discovering and booking top filming locations across Nigeria.",
+    keywords: [
+        "Ayinla Films sign up complete",
+        "Account created film platform",
+        "Welcome to Ayinla Films",
+        "Start booking movie sets",
+        "Filming locations Nigeria",
+    ],
+    canonicalUrl: `${CONFIGS.URL.CLIENT_BASE_URL}/sign-up/complete`,
+    twitterTitle: "You're In! | Ayinla Films",
+    twitterDesc: "Account created. Begin booking unique filming spots across Nigeria.",
+    openGraphTitle: "Welcome to Ayinla Films",
+    openGraphDescription: "Your account is ready. Start booking premium filming locations today.",
+})
 
 export default async function CompleteSignupPage({
     searchParams

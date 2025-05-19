@@ -14,6 +14,9 @@ export type DefaultMetaDataType = {
     alt?: string;
     twitterTitle?: string;
     twitterDesc?: string;
+    canonicalUrl?: string;
+    openGraphTitle?: string;
+    openGraphDescription?: string;
 };
 
 export function getDefaultMetadata({
@@ -25,6 +28,9 @@ export function getDefaultMetadata({
     alt,
     twitterTitle,
     twitterDesc,
+    canonicalUrl,
+    openGraphTitle,
+    openGraphDescription,
 }: DefaultMetaDataType) {
     const titleObj =
         typeof title === "string"
@@ -39,8 +45,8 @@ export function getDefaultMetadata({
         description,
         keywords,
         openGraph: {
-            title: titleObj.default,
-            description,
+            title: openGraphTitle || titleObj.default,
+            description: openGraphDescription || description,
             url,
             siteName: "Ayinla Films",
             images: [
@@ -60,7 +66,7 @@ export function getDefaultMetadata({
             images: [image],
         },
         alternates: {
-            canonical: url,
+            canonical: canonicalUrl || url,
         },
         metadataBase: new URL(CONFIGS.URL.CLIENT_BASE_URL),
         authors: [{ name: "Ayinla Films", url: CONFIGS.URL.CLIENT_BASE_URL }],
