@@ -26,14 +26,12 @@ export default function InterimState({
 }: LottieProps) {
     return (
         <div className={clsx("flex flex-col items-center text-center mt-10", wrapperStyle)}>
-            <div className="size-40">
-                <DotLottieReact
-                    src={animationData || "/lottie/loading.lottie"}
-                    loop={loop}
-                    autoplay={autoplay}
-                    className={clsx("size-40", className)}
-                />
-            </div>
+            <DotLottieReact
+                src={animationData || "/lottie/loading.lottie"}
+                loop={loop}
+                autoplay={autoplay}
+                className={clsx("size-40", className)}
+            />
             <div className={clsx("font-semibold", textStyle)}>{text}</div>
             {children}
         </div>
