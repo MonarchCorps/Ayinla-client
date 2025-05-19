@@ -1,10 +1,10 @@
 import Image from "next/image";
 import SignInForm from "./sign-in-form";
 
-export default function SignIn() {
+export default function SignIn({ redirectTo }: { redirectTo: string }) {
     return (
         <div className="grid grid-cols-2 h-screen min-h-[30rem] overflow-hidden">
-            <SignInForm wrapperStyle="px-30" />
+            <SignInForm wrapperStyle="px-30" redirectTo={redirectTo} />
             <div className="size-full relative">
                 <div className="relative size-full">
                     <Image
