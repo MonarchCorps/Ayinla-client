@@ -5,13 +5,12 @@ import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import { Spinner } from "@/components/ui/spinner";
 import { loginSchema } from "@/schema/auth";
-import { AuthResponse, loginSchemaType } from "@/types/Auth";
+import { loginSchemaType } from "@/types/Auth";
 import { zodResolver } from "@hookform/resolvers/zod";
 import clsx from "clsx";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { useAction } from "next-safe-action/hooks"
-import { useRouter } from "next/navigation";
 import { useLoginUser } from "@/app/api/v1";
 import { toastActionPromise } from "@/utils/toast-action";
 import { useEffect, useRef, useState } from "react";
@@ -20,18 +19,21 @@ import { CONFIGS } from "@/config";
 import { motion } from "framer-motion";
 import Image from "next/image";
 
+type Props = {
+	wrapperStyle?: string;
+	showImage?: boolean;
+	shouldReplace?: boolean;
+	shouldAnimate?: boolean;
+	redirectTo: string;
+}
+
 export default function SignInForm({
 	wrapperStyle,
 	showImage = true,
 	shouldReplace = false,
 	shouldAnimate = true,
-}: {
-	wrapperStyle?: string;
-	showImage?: boolean;
-	shouldReplace?: boolean;
-	shouldAnimate?: boolean;
-}) {
-	const router = useRouter();
+	redirectTo
+}: Props) {
 	const { setAuth } = useAuth();
 
 	const rememberRef = useRef<HTMLInputElement>(null);
@@ -52,7 +54,7 @@ export default function SignInForm({
 	});
 
 	const onSubmit = async (values: loginSchemaType) => {
-		const result: AuthResponse | undefined = await toastActionPromise(
+		const result = await toastActionPromise(
 			executeAsync,
 			values,
 			{
@@ -70,7 +72,13 @@ export default function SignInForm({
 			const { user, access_token: token, token_expires_at } = result;
 
 			setAuth({ user }, persist, { token, token_expires_at })
-			router.push("/");
+
+			const target = redirectTo
+				? decodeURIComponent(redirectTo)
+				: "/";
+
+			window.location.href = target
+
 			form.reset(form.getValues());
 		}
 	}

@@ -4,7 +4,11 @@ import {
     DialogTitle,
 } from "@/components/ui/dialog"
 
-export default function SignInPage() {
+export default async function SignInPage({
+    searchParams
+}: { searchParams: Promise<{ redirectTo?: string }> }) {
+    const { redirectTo } = await searchParams;
+
     return (
         <DialogContent className="rounded-none mt-6" primitiveClassname="hidden">
             <DialogTitle className="!sr-only">
@@ -14,6 +18,7 @@ export default function SignInPage() {
                 showImage={false}
                 shouldReplace={true}
                 shouldAnimate={false}
+                redirectTo={redirectTo || ""}
             />
         </DialogContent>
     );

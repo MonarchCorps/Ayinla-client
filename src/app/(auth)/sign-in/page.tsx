@@ -28,6 +28,12 @@ export const metadata: Metadata = {
 	},
 };
 
-export default function SignInPage() {
-	return <SignIn />;
+export default async function SignInPage({
+	searchParams
+}: {
+	searchParams: Promise<{ redirectTo?: string }>
+}) {
+	const { redirectTo } = await searchParams
+
+	return <SignIn redirectTo={redirectTo || ""} />;
 }
