@@ -4,9 +4,13 @@ import { usePagination } from "@/context/PaginationContext";
 import { useEffect } from "react";
 
 export default function SetTotalPages({ totalPages }: { totalPages: number }) {
-    const { setTotalPages } = usePagination("all-listings");
+    const { setTotalPages, totalPages: currentTotalPages } = usePagination("all-listings");
+
     useEffect(() => {
-        setTotalPages(totalPages);
-    }, [totalPages]);
+        if (currentTotalPages !== totalPages) {
+            setTotalPages(totalPages);
+        }
+    }, [totalPages, currentTotalPages, setTotalPages]);
+
     return null;
 }
