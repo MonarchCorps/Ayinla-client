@@ -1,52 +1,38 @@
+// cookie-utils.ts
 import { CONFIGS } from "@/config";
 
 const tokenName = CONFIGS.STORAGE_NAME.token;
-const authName = CONFIGS.STORAGE_NAME.auth
+const authName = CONFIGS.STORAGE_NAME.auth;
 
-export function isTokenExpired(): boolean {
-    try {
-        const storedData = localStorage.getItem(tokenName);
-        if (!storedData)
-            return true;
-
-        const { token, token_expires_at } = JSON.parse(storedData);
-
-        if (!token || !token_expires_at)
-            return true;
-
-        const expiresAt = new Date(token_expires_at).getTime();
-        const now = Date.now();
-
-        return expiresAt < now;
+// Universal cookie helper (works in both environments)
+export const getCookie = (name: string): string | null => {
+    // Check if we're on the client side
+    if (typeof document !== 'undefined') {
+        const match = document.cookie.match(new RegExp("(^| )" + name + "=([^;]+)"));
+        return match ? decodeURIComponent(match[2]) : null;
     }
-    catch {
-        return true;
+    // We're on the server side - cannot access document.cookie
+    return null;
+};
+
+export const setCookie = (name: string, value: string, expiresAt?: string) => {
+    // Only set cookies on the client side
+    if (typeof document !== 'undefined') {
+        const expires = expiresAt ? `; expires=${new Date(expiresAt).toUTCString()}` : "";
+        document.cookie = `${name}=${encodeURIComponent(value)}${expires}; path=/`;
     }
-}
+};
 
-/**
- * 
- * 
- * 
- */
+export const removeCookie = (name: string) => {
+    if (typeof document !== 'undefined') {
+        document.cookie = `${name}=; Max-Age=0; path=/`;
+    }
+};
 
+// Auth token functions (client-side only)
 export function getAuthToken(): string | null {
-    try {
-        const storedData = localStorage.getItem(tokenName);
-        return storedData ? JSON.parse(storedData).token : null;
-    }
-    catch {
-        return null;
-    }
+    return getCookie(tokenName);
 }
-
-/**
- * 
- * 
- * 
- * 
- * 
- */
 
 export function setAuthToken({
     token,
@@ -55,28 +41,20 @@ export function setAuthToken({
     token: string;
     token_expires_at: string;
 }): void {
-    localStorage.setItem(
-        tokenName,
-        JSON.stringify({
-            token,
-            token_expires_at,
-        }),
-    );
+    setCookie(tokenName, token, token_expires_at);
 }
 
-/**
- * 
- * 
- * 
- * 
- * 
- */
+export function isTokenExpired(): boolean {
+    return !getAuthToken();
+}
 
 export function removeAuthToken(): void {
-    localStorage.removeItem(tokenName);
+    removeCookie(tokenName);
 }
 
 export function removeAuthData(): void {
     removeAuthToken();
-    localStorage.removeItem(authName);
+    if (typeof window !== 'undefined') {
+        localStorage.removeItem(authName);
+    }
 }

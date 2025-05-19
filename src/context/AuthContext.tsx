@@ -1,11 +1,11 @@
 "use client";
 
 import { createContext, useEffect, useState } from "react";
-import { setAuthToken } from "@/utils/token";
+import { getAuthToken, removeAuthData, setAuthToken } from "@/utils/token";
 import { AuthContextType, AuthType } from "@/types/Auth";
 import { CONFIGS } from "@/config";
 
-const authName = CONFIGS.STORAGE_NAME.auth
+const authName = CONFIGS.STORAGE_NAME.auth;
 
 const AuthContext = createContext<AuthContextType>({
     auth: null,
@@ -17,12 +17,17 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     useEffect(() => {
         try {
+            // Auto-login only if token exists
+            const token = getAuthToken();
             const storedAuth = localStorage.getItem(authName);
-            if (storedAuth) {
+            if (token && storedAuth) {
                 const parsedAuth = JSON.parse(storedAuth);
                 setAuthState(parsedAuth);
+            } else {
+                removeAuthData();
             }
         } catch {
+            removeAuthData();
         }
     }, []);
 
@@ -35,13 +40,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         }
     ): void => {
         setAuthState(newAuth);
+        setAuthToken(authToken);
 
         if (persist) {
             localStorage.setItem(authName, JSON.stringify(newAuth));
-            setAuthToken(authToken);
+        } else {
+            localStorage.removeItem(authName);
         }
     };
-
 
     return (
         <AuthContext.Provider value={{ auth, setAuth }}>
