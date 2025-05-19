@@ -1,4 +1,5 @@
 import { FieldValues, Path } from "react-hook-form";
+import { Option } from "./Global";
 
 export type FormInputFieldProps<T extends FieldValues> = {
     label?: string;
@@ -27,6 +28,30 @@ export type FormInputFieldProps<T extends FieldValues> = {
     autoComplete?: string;
 };
 
+export type FormDatePickerFieldProps<T extends FieldValues> = {
+    name: Path<T>;
+    label?: string;
+    placeholder?: string;
+    required?: boolean;
+    disabled?: boolean;
+    formItemStyles?: string;
+    labelStyles?: string;
+    className?: string;
+};
+
+export type FormSelectFieldProps<T extends FieldValues> = {
+    label: string;
+    name: Path<T>;
+    placeholder: string;
+    height?: string;
+    focuscolor?: string;
+    bordercolor?: string;
+    options: Option[];
+    isCreatableSelect?: boolean;
+    isMulti?: boolean;
+};
+
+export type FormTimePickerFieldProps<T extends FieldValues> = FormDatePickerFieldProps<T>;
 
 export enum InputMode {
     Url = "url",
