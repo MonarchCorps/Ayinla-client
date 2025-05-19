@@ -61,7 +61,12 @@ export default function CreateBooking({
             }
         );
 
-        router.push("/booking/history")
+        if (!values.slug) {
+            router.push("/booking/history")
+        }
+
+        const ts = Date.now();
+        router.push(`/listing/${values.slug}/book/sent?ts=${ts}`);
 
     };
 
