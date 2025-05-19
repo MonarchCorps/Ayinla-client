@@ -30,7 +30,6 @@ export const metadata: Metadata = getDefaultMetadata({
         "Easily find film sets, homes, and studios for your next production. Ayinla Films connects you to Nigeria's best filming locations.",
 })
 
-
 export default function MainLayout({ children }: { children: React.ReactNode }) {
     return (
         <html lang="en">
