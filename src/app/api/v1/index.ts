@@ -10,12 +10,15 @@ import {
     initiateSignUpSchema,
     loginSchema
 } from "@/schema/auth";
+import { createBookingSchema } from "@/schema/booking";
+import { BookingType } from "@/types/Booking";
 import {
     ListingsResponseType,
     ListingType,
     SingleListingResponseType
 } from "@/types/Listing";
 import { shuffleArray } from "@/utils";
+import { cookies } from "next/headers";
 
 export const useLoginUser = createSafeAction(loginSchema, async ({ parsedInput }) => {
     const { email, password } = parsedInput;
@@ -167,3 +170,24 @@ export async function fetchAtLeast3Listings(length: number): Promise<ListingsRes
         }
     };
 }
+
+export const useCreateBooking = createSafeAction(
+    createBookingSchema,
+    async ({ parsedInput }) => {
+        const cookieStore = await cookies();
+        const token = cookieStore.get(CONFIGS.STORAGE_NAME.token)?.value;
+
+        const res = await axios.post(`${CONFIGS.URL.API_BASE_URL}/listings/${parsedInput.slug}/bookings`, {
+            ...parsedInput,
+        }, {
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+                ...(token ? { Authorization: `Bearer ${token}` } : {}),
+            },
+            withCredentials: false
+        })
+
+        return res.data as { booking: BookingType };
+    }
+);

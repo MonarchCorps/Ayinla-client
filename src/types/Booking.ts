@@ -1,3 +1,5 @@
+import { createBookingSchema, editBookingSchema } from "@/schema/booking";
+import { z } from "zod";
 
 export type BookingStatus = "pending" | "approved" | "rejected" | "cancelled" | "paid";
 
@@ -24,3 +26,7 @@ export type BookingType = {
         profile_picture_url?: string;
     };
 };
+
+
+export type EditBookingSchemaType = z.infer<typeof editBookingSchema>;
+export type CreateBookingSchemaType = z.infer<typeof createBookingSchema>;

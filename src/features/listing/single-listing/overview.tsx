@@ -127,7 +127,7 @@ export default function Overview({ data }: Props) {
                         className="mt-8 w-fit py-6 px-9 rounded-none bg-[#23396A] hover:bg-[#23396A] hover:rounded-3xl"
                         asChild
                     >
-                        <Link href="/booking">Book Now</Link>
+                        <Link href={`/listing/${data.slug}/book`}>Book Now</Link>
                     </Button>
                 </div>
             </div>
