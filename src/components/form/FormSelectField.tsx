@@ -4,9 +4,11 @@ import type { FormSelectFieldProps } from "@/types/Form";
 import type { Option } from "@/types/Global";
 import { useFormContext, type FieldValues } from "react-hook-form";
 import type {
-    ActionMeta,
     MultiValue,
     SingleValue,
+    StylesConfig,
+    GroupBase,
+    CSSObjectWithLabel,
 } from "react-select";
 
 import clsx from "clsx";
@@ -51,35 +53,38 @@ export default function FormSelectField<T extends FieldValues>({
         setIsClient(true);
     }, []);
 
-    const customSelectStyles = {
-        control: (defaultStyles: any) => ({
-            ...defaultStyles,
+    const customSelectStyles: StylesConfig<Option, boolean, GroupBase<Option>> = {
+        control: (
+            provided: CSSObjectWithLabel,
+            // state: ControlProps<Option, boolean>
+        ) => ({
+            ...provided,
             "&:active": { borderColor: "inherit" },
             "&:hover": { borderColor: !hasError ? "inherit" : "#e7000b" },
-            "borderColor": !hasError ? bordercolor : "#e7000b",
-            "borderRadius": "8px",
-            "borderWidth": "1px",
-            "minHeight": height,
+            borderColor: !hasError ? bordercolor : "#e7000b",
+            borderRadius: "8px",
+            borderWidth: "1px",
+            minHeight: height,
         }),
-        menu: (provided: any) => ({
+        menu: (provided: CSSObjectWithLabel) => ({
             ...provided,
             backgroundColor: "#fff",
             zIndex: 9999,
             borderRadius: "8px",
             color: "#323539",
         }),
-        placeholder: (base: any) => ({
+        placeholder: (base: CSSObjectWithLabel) => ({
             ...base,
             fontWeight: 400,
             fontSize: "14px",
             color: "#858C95",
         }),
-        input: (provided: any) => ({
+        input: (provided: CSSObjectWithLabel) => ({
             ...provided,
-            "caretColor": "transparent",
-            "border": "none",
-            "fontSize": "15px",
-            "borderWidth": "0px",
+            caretColor: "transparent",
+            border: "none",
+            fontSize: "15px",
+            borderWidth: "0px",
             "&:focus": {
                 outline: "transparent",
                 border: "black",
@@ -131,41 +136,41 @@ export default function FormSelectField<T extends FieldValues>({
 
                 const value = isMulti
                     ? (Array.isArray(field.value)
-                        ? (field.value as string[]).map((val: string) => {
-                            const existing = localOptions.find(opt => opt.value === val);
-                            return existing ?? { label: val, value: val };
+                        ? (field.value as string[]).map((val) => {
+                            const found = localOptions.find((o) => o.value === val);
+                            return found ?? { label: val, value: val };
                         })
                         : [])
                     : (() => {
-                        if (!field.value)
-                            return null;
+                        if (!field.value) return null;
                         const val = field.value as string;
-                        const existing = localOptions.find(opt => opt.value === val);
-                        return existing ?? { label: val, value: val };
+                        const found = localOptions.find((o) => o.value === val);
+                        return found ?? { label: val, value: val };
                     })();
 
                 const handleChange = (
                     selected: MultiValue<Option> | SingleValue<Option>,
-                    _actionMeta: ActionMeta<Option>,
+                    // _actionMeta: ActionMeta<Option>
                 ) => {
                     if (isMulti) {
-                        const values = (selected as MultiValue<Option>).map(opt => opt.value);
-                        field.onChange(values);
-                    }
-                    else {
-                        field.onChange((selected as SingleValue<Option>)?.value ?? null);
+                        field.onChange(
+                            (selected as MultiValue<Option>).map((opt) => opt.value)
+                        );
+                    } else {
+                        field.onChange(
+                            (selected as SingleValue<Option>)?.value ?? null
+                        );
                     }
                 };
 
                 const handleCreate = (inputValue: string) => {
-                    const newOption = { label: inputValue, value: inputValue };
-                    setLocalOptions(prev => [...prev, newOption]);
+                    const newOption: Option = { label: inputValue, value: inputValue };
+                    setLocalOptions((prev) => [...prev, newOption]);
 
                     if (isMulti) {
-                        const current = field.value || [];
+                        const current = (field.value as string[]) || [];
                         field.onChange([...current, newOption.value]);
-                    }
-                    else {
+                    } else {
                         field.onChange(newOption.value);
                     }
                 };
@@ -175,15 +180,17 @@ export default function FormSelectField<T extends FieldValues>({
                         <FormLabel className="mb-1">{label}</FormLabel>
                         <FormControl>
                             <SelectComponent
-                                instanceId={instanceId} // This is still needed but now we'll render conditionally
+                                instanceId={instanceId}
                                 options={localOptions}
                                 menuPlacement="bottom"
                                 value={value}
                                 onChange={handleChange}
-                                onCreateOption={isCreatableSelect ? handleCreate : undefined}
+                                onCreateOption={
+                                    isCreatableSelect ? handleCreate : undefined
+                                }
                                 styles={customSelectStyles}
                                 className={clsx(
-                                    "text-[14px] focus:outline-none focus:ring-2 focus:ring-red-500",
+                                    "text-[14px] focus:outline-none focus:ring-2 focus:ring-red-500"
                                 )}
                                 placeholder={placeholder}
                                 closeMenuOnSelect={!isMulti}
