@@ -87,22 +87,6 @@ export async function fetchListings(query: string, page: number, limit = 8): Pro
     return res.json();
 }
 
-// export async function fetchListingDetails(slug: string): Promise<{ listing: SingleListingResponseType }> {
-//     const res = await fetch(`${CONFIGS.URL.API_BASE_URL}/listings/${slug}/public`, {
-//         method: "GET",
-//         headers: { "Content-Type": "application/json" },
-//         next: { revalidate: 60 },
-//         credentials: "omit"
-//     })
-//     console.log(res)
-//     if (!res.ok) {
-//         throw new Error("Failed to fetch listing details");
-//     }
-
-//     return res.json();
-
-// }
-
 export async function fetchListingDetails(
     slug: string
 ): Promise<{ listing: SingleListingResponseType }> {
