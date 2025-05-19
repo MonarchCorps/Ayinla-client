@@ -11,6 +11,7 @@ import {
     loginSchema
 } from "@/schema/auth";
 import { createBookingSchema } from "@/schema/booking";
+import { AuthResponse } from "@/types/Auth";
 import { BookingType } from "@/types/Booking";
 import {
     ListingsResponseType,
@@ -22,7 +23,7 @@ import { cookies } from "next/headers";
 
 export const useLoginUser = createSafeAction(loginSchema, async ({ parsedInput }) => {
     const { email, password } = parsedInput;
-    const res = await axios.post("/auth/login", {
+    const res = await axios.post<AuthResponse>("/auth/login", {
         email,
         password,
     });
@@ -183,7 +184,7 @@ export const useCreateBooking = createSafeAction(
         const cookieStore = await cookies();
         const token = cookieStore.get(CONFIGS.STORAGE_NAME.token)?.value;
 
-        const res = await axios.post(`${CONFIGS.URL.API_BASE_URL}/listings/${parsedInput.slug}/bookings`, {
+        const res = await axios.post<{ booking: BookingType }>(`${CONFIGS.URL.API_BASE_URL}/listings/${parsedInput.slug}/bookings`, {
             ...parsedInput,
         }, {
             headers: {
@@ -194,6 +195,6 @@ export const useCreateBooking = createSafeAction(
             withCredentials: false
         })
 
-        return res.data as { booking: BookingType };
+        return res.data
     }
 );
