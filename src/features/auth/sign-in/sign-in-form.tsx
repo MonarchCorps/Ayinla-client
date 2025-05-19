@@ -35,7 +35,7 @@ export default function SignInForm({
 	const { setAuth } = useAuth();
 
 	const rememberRef = useRef<HTMLInputElement>(null);
-	const [persist, setPersist] = useState<boolean>(false);
+	const [persist, setPersist] = useState<boolean>(true);
 
 	const { executeAsync, isExecuting } = useAction(useLoginUser)
 
