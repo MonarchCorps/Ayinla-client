@@ -74,7 +74,11 @@ export const useCompleteForgotPassword = createSafeAction(
     });
 
 
-export async function fetchListings(query: string, page: number, limit = 8): Promise<ListingsResponseType> {
+export async function fetchListings(
+    query: string,
+    page: number,
+    limit = 8
+): Promise<ListingsResponseType> {
     const res = await fetch(`${CONFIGS.URL.API_BASE_URL}/search`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -133,7 +137,9 @@ export async function fetchListingDetails(
 }
 
 
-export async function fetchAtLeast3Listings(length: number): Promise<ListingsResponseType> {
+export async function fetchAtLeast3Listings(
+    length: number
+): Promise<ListingsResponseType> {
     const queries = ['mo', 'home', 'flat', 'room', 'villa', 'rent', 'real', 'estate'];
     const listingsMap = new Map<string, ListingType>();
 
