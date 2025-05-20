@@ -1,5 +1,5 @@
 import AllListing from "@/features/listing/all-listing";
-import Pag from "@/features/listing/all-listing/pag";
+import Pag from "@/components/pag";
 import InterimState from "@/components/loader/interim-state";
 import { ListingParams } from "@/types/Listing";
 import { getDefaultMetadata } from "@/lib/metadata";
@@ -83,7 +83,7 @@ export default async function Page({
             >
                 <AllListing query={query} page={page} />
             </Suspense>
-            <Pag currentPage={page} />
+            <Pag currentPage={page} pagName="all-listings" />
         </div>
     );
 }

@@ -9,7 +9,7 @@ export default async function AllListing({ query, page }: { query: string; page:
 
     return (
         <>
-            <SetTotalPages totalPages={data.paging.total_pages} />
+            <SetTotalPages totalPages={data.paging.total_pages} pagName="all-listings" />
             <div className="grid grid-cols-3 gap-y-6 gap-x-8 mt-14">
                 {data.listings.length ? (
                     data.listings.map((listing: ListingType, index: number) => (

@@ -1,13 +1,19 @@
 "use client";
 
 import Pagination from "@mui/material/Pagination";
-import { usePagination } from "@/context/PaginationContext";
+import { KeyName, usePagination } from "@/context/PaginationContext";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { IoArrowBack, IoArrowForward } from "react-icons/io5";
 
-export default function Pag({ currentPage }: { currentPage: number }) {
-    const { totalPages, setCurrentPage } = usePagination("all-listings");
+export default function Pag({
+    currentPage,
+    pagName
+}: {
+    currentPage: number, pagName: KeyName
+}) {
+
+    const { totalPages, setCurrentPage } = usePagination(pagName);
     const router = useRouter();
     const searchParams = useSearchParams();
 
