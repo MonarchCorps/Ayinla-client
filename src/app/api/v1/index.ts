@@ -78,13 +78,12 @@ export const useCompleteForgotPassword = createSafeAction(
         return { message: "Success" }
     });
 
-
 export async function fetchListings(
     query: string,
     page: number,
     limit = 8
 ): Promise<ListingsResponseType> {
-    const res = await fetch(`${CONFIGS.URL.API_BASE_URL}/search`, {
+    const res = await fetch(`${base_url}/search`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ query, page, limit }),
@@ -104,7 +103,7 @@ export async function fetchListingDetails(
 ): Promise<{ listing: SingleListingResponseType }> {
     try {
         const res = await fetch(
-            `${CONFIGS.URL.API_BASE_URL}/listings/${slug}/public`,
+            `${base_url}/listings/${slug}/public`,
             {
                 method: "GET",
                 headers: { "Content-Type": "application/json" },
@@ -114,7 +113,7 @@ export async function fetchListingDetails(
         );
 
         if (!res.ok) {
-            let errorMessage = `Failed to fetch listing details: ${res.status} ${res.statusText}`;
+            let errorMessage = `${res.statusText}`;
             try {
                 const errorData = await res.json();
                 if (errorData?.message) {
@@ -131,16 +130,13 @@ export async function fetchListingDetails(
         const data = await res.json();
         return data;
     } catch (error) {
-        // This catch handles network errors or unexpected issues
         if (error instanceof Error) {
-            // You could also log the error here or send it to a monitoring service
-            throw new Error(`Network or unexpected error: ${error.message}`);
+            throw new Error(error.message);
         } else {
             throw new Error("Unknown error occurred");
         }
     }
 }
-
 
 export async function fetchAtLeast3Listings(
     length: number
@@ -149,7 +145,7 @@ export async function fetchAtLeast3Listings(
     const listingsMap = new Map<string, ListingType>();
 
     for (const query of queries) {
-        const res = await fetch(`${CONFIGS.URL.API_BASE_URL}/search`, {
+        const res = await fetch(`${base_url}/search`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ query, page: 1, limit: 10 }),
@@ -159,7 +155,7 @@ export async function fetchAtLeast3Listings(
 
         if (!res.ok) continue;
 
-        const data: ListingsResponseType = await res.json();
+        const data = await res.json();
 
         for (const listing of data.listings) {
             listingsMap.set(listing.slug, listing);
@@ -188,7 +184,7 @@ export const useCreateBooking = createSafeAction(
         const cookieStore = await cookies();
         const token = cookieStore.get(CONFIGS.STORAGE_NAME.token)?.value;
 
-        const res = await axios.post<{ booking: BookingType }>(`${CONFIGS.URL.API_BASE_URL}/listings/${parsedInput.slug}/bookings`, {
+        const res = await axios.post<{ booking: BookingType }>(`${base_url}/listings/${parsedInput.slug}/bookings`, {
             ...parsedInput,
         }, {
             headers: {
