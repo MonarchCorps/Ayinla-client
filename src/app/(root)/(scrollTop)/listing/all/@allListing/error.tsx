@@ -7,6 +7,7 @@ import { startTransition } from 'react'
 
 export default function Error({
     reset,
+    error
 }: {
     error: Error & { digest?: string }
     reset: () => void
@@ -26,7 +27,9 @@ export default function Error({
                     text='Something went wrong‼️'
                     textStyle='font-bold text-3xl text-red-600 mt-3 mb-2'
                 >
-                    <p className='font-semibold text-base/relaxed mb-4'>Failed to fetch listings</p>
+                    <p className='font-semibold text-base/relaxed mb-4'>
+                        {error.message || "Failed to fetch listings"}
+                    </p>
                     <RetryButton onClick={() => {
                         reload();
                     }} />
