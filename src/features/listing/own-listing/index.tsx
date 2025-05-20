@@ -5,11 +5,18 @@ import { ListingStatus } from "@/types/Listing";
 
 export default async function OwnListing({
     page,
-    status
+    status = "",
 }: {
-    page: number; status: ListingStatus
+    page: number;
+    status?: ListingStatus | "";
 }) {
-    const data = await fetchUserListings({ page, statuses: [status], limit: 5 });
+    const statuses = status !== "" ? [status] : [];
+
+    const data = await fetchUserListings({
+        page,
+        statuses,
+        limit: 5,
+    });
 
     return (
         <>
