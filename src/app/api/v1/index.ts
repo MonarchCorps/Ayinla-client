@@ -15,11 +15,15 @@ import { AuthResponse } from "@/types/Auth";
 import { BookingType } from "@/types/Booking";
 import {
     ListingsResponseType,
+    ListingStatus,
     ListingType,
+    OwnListingResponseType,
     SingleListingResponseType
 } from "@/types/Listing";
 import { shuffleArray } from "@/utils";
 import { cookies } from "next/headers";
+
+const base_url = CONFIGS.URL.API_BASE_URL;
 
 export const useLoginUser = createSafeAction(loginSchema, async ({ parsedInput }) => {
     const { email, password } = parsedInput;
@@ -198,3 +202,60 @@ export const useCreateBooking = createSafeAction(
         return res.data
     }
 );
+
+export async function fetchUserListings(
+    options: {
+        page?: number;
+        statuses?: ListingStatus[];
+        limit?: number;
+    } = {}
+): Promise<OwnListingResponseType> {
+    const { page = 1, statuses = [], limit = 5 } = options;
+    const cookieStore = await cookies();
+    const token = cookieStore.get(CONFIGS.STORAGE_NAME.token)?.value;
+
+    const params = new URLSearchParams({
+        page: String(page),
+        limit: String(limit),
+    });
+    if (statuses.length) {
+        statuses.forEach(status => params.append('status', status));
+    }
+
+    try {
+
+        const res = await fetch(`${base_url}/listings?${params.toString()}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+                ...(token ? { Authorization: `Bearer ${token}` } : {}),
+            },
+            next: { revalidate: 60 },
+            credentials: "omit",
+        });
+
+        if (!res.ok) {
+            let errorMessage = `${res.statusText}`;
+            try {
+                const errorData = await res.json();
+                if (errorData?.message) {
+                    errorMessage += ` - ${errorData.message}`;
+                } else {
+                    errorMessage += ` - ${JSON.stringify(errorData)}`;
+                }
+            } catch {
+                // Could not parse error response, ignore
+            }
+            throw new Error(errorMessage);
+        }
+
+        return res.json();
+    } catch (error) {
+        if (error instanceof Error) {
+            throw new Error(error.message);
+        } else {
+            throw new Error("Unknown error occurred");
+        }
+    }
+}

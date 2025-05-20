@@ -7,7 +7,7 @@ import {
     useState
 } from "react";
 
-export type KeyName = "all-listings"
+export type KeyName = "all-listings" | "own-listings"
 
 type PaginationState = {
     currentPage: number;

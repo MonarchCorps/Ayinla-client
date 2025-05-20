@@ -5,7 +5,7 @@ const EXPIRATION_MINUTES = 3;
 const TOKEN_NAME = CONFIGS.STORAGE_NAME.token;
 
 // Route patterns to protect or time-check
-const PROTECTED_ROUTES = ["/listing/:slug/book", "/booking/history"];
+const PROTECTED_ROUTES = ["/listing/:slug/book", "/listing/own", "/booking/history"];
 const SENT_ROUTES = ["/listing/:slug/book/sent"];
 
 // Check if user is logged in by cookie
@@ -68,7 +68,8 @@ export function middleware(req: NextRequest) {
 export const config = {
     matcher: [
         "/listing/:slug/book",
-        "/booking/history",
         "/listing/:slug/book/sent",
+        "/listing/own",
+        "/booking/history",
     ],
 };
