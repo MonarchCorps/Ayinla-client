@@ -1,6 +1,6 @@
 import CreateBooking from "@/features/booking/create/create-booking-form";
 import { getDefaultMetadata } from "@/lib/metadata";
-import { fetchListingDetails } from "@/app/api/v1";
+import { fetchListingDetails } from "@/app/api/v1/listing";
 import { Metadata } from "next";
 
 type Params = { slug: string };

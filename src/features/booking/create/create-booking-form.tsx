@@ -1,6 +1,6 @@
 "use client";
 
-import { useCreateBooking } from "@/app/api/v1";
+import { useCreateBooking } from "@/app/api/v1/booking";
 import FormDatePickerField from "@/components/form/FormDatePicker";
 import FormInputField from "@/components/form/FormInputField";
 import FormSelectField from "@/components/form/FormSelectField";

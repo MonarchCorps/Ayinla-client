@@ -1,4 +1,4 @@
-import { fetchListingDetails } from "@/app/api/v1";
+import { fetchListingDetails } from "@/app/api/v1/listing";
 import Overview from "./overview";
 import Details from "./details";
 import Gallery from "./gallery";

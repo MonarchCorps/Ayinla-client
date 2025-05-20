@@ -1,18 +1,6 @@
 "use server";
 
 import { CONFIGS } from "@/config";
-import axios from "@/lib/axios";
-import { createSafeAction } from "@/lib/safe-action"
-import {
-    completeForgotPasswordSchema,
-    completeSignupSchema,
-    initiateForgotPasswordSchema,
-    initiateSignUpSchema,
-    loginSchema
-} from "@/schema/auth";
-import { createBookingSchema } from "@/schema/booking";
-import { AuthResponse } from "@/types/Auth";
-import { BookingType } from "@/types/Booking";
 import {
     ListingsResponseType,
     ListingStatus,
@@ -24,59 +12,6 @@ import { shuffleArray } from "@/utils";
 import { cookies } from "next/headers";
 
 const base_url = CONFIGS.URL.API_BASE_URL;
-
-export const useLoginUser = createSafeAction(loginSchema, async ({ parsedInput }) => {
-    const { email, password } = parsedInput;
-    const res = await axios.post<AuthResponse>("/auth/login", {
-        email,
-        password,
-    });
-
-    return res.data;
-});
-
-export const useInitiateSignUp = createSafeAction(
-    initiateSignUpSchema,
-    async ({ parsedInput }) => {
-        const { email } = parsedInput;
-        await axios.post("/auth/initiate-signup", {
-            email,
-            base_url: `${CONFIGS.URL.CLIENT_BASE_URL}/sign-up/complete`,
-        });
-
-        return { message: "Success" };
-    });
-
-export const useCompleteSignup = createSafeAction(
-    completeSignupSchema,
-    async ({ parsedInput }) => {
-        const res = await axios.post("/auth/complete-signup", {
-            ...parsedInput
-        });
-
-        return res.data;
-    });
-
-export const useInitiateForgotPassword = createSafeAction(
-    initiateForgotPasswordSchema,
-    async ({ parsedInput }) => {
-        await axios.post("/auth/initiate-password-recovery", {
-            ...parsedInput,
-            base_url: `${CONFIGS.URL.CLIENT_BASE_URL}/forgot-password/complete`
-        })
-
-        return { message: "Success" }
-    });
-
-export const useCompleteForgotPassword = createSafeAction(
-    completeForgotPasswordSchema,
-    async ({ parsedInput }) => {
-        await axios.post("/auth/complete-password-recovery", {
-            ...parsedInput
-        })
-
-        return { message: "Success" }
-    });
 
 export async function fetchListings(
     query: string,
@@ -178,26 +113,6 @@ export async function fetchAtLeast3Listings(
     };
 }
 
-export const useCreateBooking = createSafeAction(
-    createBookingSchema,
-    async ({ parsedInput }) => {
-        const cookieStore = await cookies();
-        const token = cookieStore.get(CONFIGS.STORAGE_NAME.token)?.value;
-
-        const res = await axios.post<{ booking: BookingType }>(`${base_url}/listings/${parsedInput.slug}/bookings`, {
-            ...parsedInput,
-        }, {
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json",
-                ...(token ? { Authorization: `Bearer ${token}` } : {}),
-            },
-            withCredentials: false
-        })
-
-        return res.data
-    }
-);
 
 export async function fetchUserListings(
     options: {

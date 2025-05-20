@@ -1,6 +1,6 @@
 import Card from "./card";
 import { ListingType } from "@/types/Listing";
-import { fetchListings } from "@/app/api/v1";
+import { fetchListings } from "@/app/api/v1/listing";
 import InterimState from "@/components/loader/interim-state";
 import SetTotalPages from "@/components/set-total-pages";
 

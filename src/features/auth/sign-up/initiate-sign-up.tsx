@@ -1,6 +1,6 @@
 "use client";
 
-import { useInitiateSignUp } from "@/app/api/v1";
+import { useInitiateSignUp } from "@/app/api/v1/auth";
 import FormInputField from "@/components/form/FormInputField";
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";

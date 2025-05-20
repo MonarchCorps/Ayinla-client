@@ -11,13 +11,13 @@ import clsx from "clsx";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { useAction } from "next-safe-action/hooks"
-import { useLoginUser } from "@/app/api/v1";
 import { toastActionPromise } from "@/utils/toast-action";
 import { useEffect, useRef, useState } from "react";
 import useAuth from "@/hooks/useAuth";
 import { CONFIGS } from "@/config";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { useLoginUser } from "@/app/api/v1/auth";
 
 type Props = {
 	wrapperStyle?: string;

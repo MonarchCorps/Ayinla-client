@@ -1,6 +1,6 @@
 "use client";
 
-import { useCompleteSignup } from "@/app/api/v1";
+import { useCompleteSignup } from "@/app/api/v1/auth";
 import FormInputField from "@/components/form/FormInputField";
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";

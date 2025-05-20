@@ -1,9 +1,9 @@
 import { CONFIGS } from "@/config";
-import { fetchListingDetails } from "@/app/api/v1";
+import { fetchListingDetails } from "@/app/api/v1/listing";
 import { Metadata } from "next";
 import SingleListing from "@/features/listing/single-listing";
 import InterimState from "@/components/loader/interim-state";
-import RecommendListing from "@/features/related/recommened-listing";
+import RecommendedListing from "@/features/related/recommended-listing";
 import { Suspense } from "react";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
@@ -72,7 +72,7 @@ export default async function ListingDetailsPage({
                 <SingleListing slug={slug} />
             </Suspense>
             <section className="mt-13">
-                <RecommendListing />
+                <RecommendedListing />
                 <div className="grid place-content-center">
                     <Button
                         className="mt-20 w-fit py-6 px-9 rounded-none bg-[#23396A] hover:bg-[#23396A] hover:rounded-3xl"

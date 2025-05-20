@@ -1,4 +1,4 @@
-import { fetchUserListings } from "@/app/api/v1";
+import { fetchUserListings } from "@/app/api/v1/listing";
 import Table from "./table";
 import SetTotalPages from "@/components/set-total-pages";
 import { ListingStatus } from "@/types/Listing";

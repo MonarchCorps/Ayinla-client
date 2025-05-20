@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import Card from "./card";
-import { fetchAtLeast3Listings } from "@/app/api/v1";
+import { fetchAtLeast3Listings } from "@/app/api/v1/listing";
 
 export default async function TailoredProperties() {
     const tailoredProperties = await fetchAtLeast3Listings(6);

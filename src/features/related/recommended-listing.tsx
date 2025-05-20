@@ -1,7 +1,7 @@
 import Card from "../listing/all-listing/card";
-import { fetchAtLeast3Listings } from "@/app/api/v1";
+import { fetchAtLeast3Listings } from "@/app/api/v1/listing";
 
-export default async function RecommendListing() {
+export default async function RecommendedListing() {
     const data = await fetchAtLeast3Listings(3);
 
     return (

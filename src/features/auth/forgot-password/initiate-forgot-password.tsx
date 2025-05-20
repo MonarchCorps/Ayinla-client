@@ -11,7 +11,7 @@ import { initiateForgotPasswordSchema } from "@/schema/auth";
 import { Form } from "@/components/ui/form";
 import { toastActionPromise } from "@/utils/toast-action";
 import { useAction } from "next-safe-action/hooks";
-import { useInitiateForgotPassword } from "@/app/api/v1";
+import { useInitiateForgotPassword } from "@/app/api/v1/auth";
 
 export default function InitiateForgotPassword() {
 
