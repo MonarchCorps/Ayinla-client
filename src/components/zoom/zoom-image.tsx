@@ -17,7 +17,7 @@ export default function ZoomImage({ src, width, height, alt }: Props) {
                 style={{ width, height }}
             >
                 <Image
-                    className="object-cover border z-10"
+                    className="object-cover border"
                     src={src}
                     alt={alt}
                     fill
