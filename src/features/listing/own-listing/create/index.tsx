@@ -138,11 +138,8 @@ export default function CreateListing({
             }
 
             if (res.data) {
-                toast.success("Listing created");
-
-                setTimeout(() => {
-                    router.push("/listing/own");
-                }, 100);
+                const ts = Date.now();
+                router.push(`/listing/own/create/sent?ts=${ts}`);
             }
 
         } catch (err) {

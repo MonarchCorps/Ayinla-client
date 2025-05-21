@@ -10,6 +10,7 @@ import {
     SingleListingResponseType
 } from "@/types/Listing";
 import { shuffleArray } from "@/utils";
+import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 
 const api_base_url = CONFIGS.URL.API_BASE_URL;
@@ -205,6 +206,8 @@ export async function createListing(
         const data: {
             listing: SingleListingResponseType
         } = await res.json();
+
+        revalidatePath("/listing/own")
 
         return {
             success: true,

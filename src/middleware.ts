@@ -6,7 +6,7 @@ const TOKEN_NAME = CONFIGS.STORAGE_NAME.token;
 
 // Route patterns to protect or time-check
 const PROTECTED_ROUTES = ["/listing/:slug/book", "/listing/own", "/booking/history"];
-const SENT_ROUTES = ["/listing/:slug/book/sent"];
+const SENT_ROUTES = ["/listing/:slug/book/sent", "/listing/own/create/sent"];
 
 // Check if user is logged in by cookie
 function isAuthenticated(req: NextRequest) {
@@ -70,6 +70,7 @@ export const config = {
         "/listing/:slug/book",
         "/listing/:slug/book/sent",
         "/listing/own",
+        "/listing/own/create/sent",
         "/booking/history",
     ],
 };
