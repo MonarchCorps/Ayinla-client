@@ -39,10 +39,8 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
                 <AppRouterCacheProvider>
                     <PaginationProvider>
                         <AuthProvider>
-                            <main>
-                                {children}
-                                <ToastifyContainer />
-                            </main>
+                            {children}
+                            <ToastifyContainer />
                         </AuthProvider>
                     </PaginationProvider>
                 </AppRouterCacheProvider>
