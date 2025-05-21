@@ -19,7 +19,7 @@ export async function fetchListings(
     page: number,
     limit = 8
 ): Promise<ListingsResponseType> {
-    const res = await fetch(`${base_url}/search`, {
+    const res = await fetch(`${api_base_url}/search`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ query, page, limit }),
@@ -39,7 +39,7 @@ export async function fetchListingDetails(
 ): Promise<{ listing: SingleListingResponseType }> {
     try {
         const res = await fetch(
-            `${base_url}/listings/${slug}/public`,
+            `${api_base_url}/listings/${slug}/public`,
             {
                 method: "GET",
                 headers: { "Content-Type": "application/json" },
@@ -81,7 +81,7 @@ export async function fetchAtLeast3Listings(
     const listingsMap = new Map<string, ListingType>();
 
     for (const query of queries) {
-        const res = await fetch(`${base_url}/search`, {
+        const res = await fetch(`${api_base_url}/search`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ query, page: 1, limit: 10 }),
@@ -114,7 +114,6 @@ export async function fetchAtLeast3Listings(
     };
 }
 
-
 export async function fetchUserListings(
     options: {
         page?: number;
@@ -136,7 +135,7 @@ export async function fetchUserListings(
 
     try {
 
-        const res = await fetch(`${base_url}/listings?${params.toString()}`, {
+        const res = await fetch(`${api_base_url}/listings?${params.toString()}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
