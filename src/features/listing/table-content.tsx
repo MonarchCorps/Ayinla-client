@@ -120,6 +120,7 @@ export default function OwnListingTable({
                         <SelectValue placeholder="All" />
                     </SelectTrigger>
                     <SelectContent>
+                        <SelectItem value="all">All</SelectItem>
                         <SelectItem value="approved">Approved</SelectItem>
                         <SelectItem value="pending">Pending</SelectItem>
                         <SelectItem value="rejected">Rejected</SelectItem>

@@ -5,12 +5,13 @@ import { ListingStatus } from "@/types/Listing";
 
 export default async function OwnListing({
     page,
-    status = "",
+    status = "all",
 }: {
     page: number;
-    status?: ListingStatus | "";
+    status?: ListingStatus | "all" | "";
 }) {
-    const statuses = status !== "" ? [status] : [];
+    const statuses: ListingStatus[] =
+        status !== "all" && status !== "" ? [status as ListingStatus] : [];
 
     const data = await fetchUserListings({
         page,
