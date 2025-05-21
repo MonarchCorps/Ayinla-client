@@ -13,7 +13,7 @@ export const useCreateBooking = createSafeAction(
         const cookieStore = await cookies();
         const token = cookieStore.get(CONFIGS.STORAGE_NAME.token)?.value;
 
-        const res = await axios.post<{ booking: BookingType }>(`${CONFIGS.URL.API_BASE_URL}/listings/${parsedInput.slug}/bookings`, {
+        const res = await axios.post<{ booking: BookingType }>(`/listings/${parsedInput.slug}/bookings`, {
             ...parsedInput,
         }, {
             headers: {
