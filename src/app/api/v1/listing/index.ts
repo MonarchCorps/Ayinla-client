@@ -2,6 +2,7 @@
 
 import { CONFIGS } from "@/config";
 import {
+    CreateOrUpdateListingPayload,
     ListingsResponseType,
     ListingStatus,
     ListingType,
@@ -11,7 +12,7 @@ import {
 import { shuffleArray } from "@/utils";
 import { cookies } from "next/headers";
 
-const base_url = CONFIGS.URL.API_BASE_URL;
+const api_base_url = CONFIGS.URL.API_BASE_URL;
 
 export async function fetchListings(
     query: string,
@@ -167,6 +168,54 @@ export async function fetchUserListings(
             throw new Error(error.message);
         } else {
             throw new Error("Unknown error occurred");
+        }
+    }
+}
+
+export async function createListing(
+    dataToSend: CreateOrUpdateListingPayload
+): Promise<{
+    success: boolean;
+    errorMessage?: string;
+    data?: {
+        listing: SingleListingResponseType
+    }
+}> {
+    const cookieStore = await cookies();
+    const token = cookieStore.get(CONFIGS.STORAGE_NAME.token)?.value;
+
+    try {
+        const res = await fetch(`${api_base_url}/listings`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                ...(token ? { Authorization: `Bearer ${token}` } : {}),
+            },
+            body: JSON.stringify(dataToSend),
+            credentials: "omit"
+        })
+
+        if (!res.ok) {
+            const errorData = await res.json();
+            return {
+                success: false,
+                errorMessage: errorData?.message || "Failed to create listing"
+            }
+        }
+
+        const data: {
+            listing: SingleListingResponseType
+        } = await res.json();
+
+        return {
+            success: true,
+            data,
+        }
+
+    } catch {
+        return {
+            success: false,
+            errorMessage: "Unknown error occurred"
         }
     }
 }

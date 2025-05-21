@@ -1,4 +1,6 @@
+import { z } from "zod";
 import { PagingType } from "./Paging";
+import { createListingFormSchema } from "@/schema/listing";
 
 export type ListingStatus = "approved" | "rejected" | "pending";
 
@@ -6,6 +8,10 @@ export type AmenitiesType = {
     name: string;
     slug: string;
     type: "building" | "unit"
+}
+
+export type AmenitiesResponseType = {
+    amenities: AmenitiesType[];
 }
 
 export type ListingParams = {
@@ -60,3 +66,21 @@ export type SingleListingResponseType =
         description: string;
         amenities: AmenitiesType[];
     };
+
+export type CreateOrUpdateListingPayload = {
+    name: string;
+    description: string;
+    property_type: "apartment" | "house";
+    state: string;
+    local_government_area: string;
+    address: string;
+    size_sqft: number;
+    contact_phone_number: string;
+    tags: string[];
+    thumbnail_url: string;
+    image_urls: string[];
+    amenity_slugs: string[];
+    price_kobo: number;
+};
+
+export type createListingFormSchemaType = z.infer<typeof createListingFormSchema>;
