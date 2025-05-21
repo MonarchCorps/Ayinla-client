@@ -27,3 +27,23 @@ export const useCreateBooking = createSafeAction(
         return res.data
     }
 );
+
+export const fetchBookingHistory = async () => {
+    const cookieStore = await cookies();
+    const token = cookieStore.get(CONFIGS.STORAGE_NAME.token)?.value;
+
+    try {
+        const res = await fetch("/bookings", {
+            headers: {
+                "Content-Type": "application/json",
+                ...(token ? { Authorization: `Bearer ${token}` } : {}),
+            }
+        });
+
+        const data: { booking: BookingType } = await res.json();
+        return data;
+
+    } catch (error) {
+        console.log(error)
+    }
+}
