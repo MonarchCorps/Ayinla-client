@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default async function Page() {
     return (
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between max-w-[1310px] mx-auto">
             <h1 className="text-3xl mb-2 text-[#101828] font-semibold">All Listings</h1>
             <Button
                 type="submit"

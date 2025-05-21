@@ -13,7 +13,7 @@ export default async function Page({
     const page = Number(params.page || 1);
 
     return (
-        <div className="mt-6">
+        <div className="mt-6 max-w-[1310px] mx-auto">
             <Suspense
                 fallback={(
                     <InterimState
