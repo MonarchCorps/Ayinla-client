@@ -167,3 +167,8 @@ button[data-slot="accordion-trigger"]>svg {
 			-10px -10px 0 #ff005e;
 	}
 }
+
+.rs-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
